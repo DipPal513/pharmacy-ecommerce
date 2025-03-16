@@ -20,12 +20,33 @@ export default function Product_Showcase({ title }) {
         {/* Swiper Slider */}
         <Swiper
           spaceBetween={20} // Adjust space between slides
-          slidesPerView={5} // Default number of slides visible
           loop={true} // Enable looping
-          autoplay={true}
+          autoplay={{ delay: 2500, disableOnInteraction: false }} // Enable autoplay with delay
           navigation={{
             nextEl: ".swiper-button-next", // Specify next button
             prevEl: ".swiper-button-prev", // Specify prev button
+          }}
+          breakpoints={{
+            320: {
+              // Mobile (small screens)
+              slidesPerView: 1, // Show 1 slide at a time
+            },
+            480: {
+              // Small screens like tablets in portrait
+              slidesPerView: 2, // Show 2 slides at a time
+            },
+            768: {
+              // Tablets and small desktop screens
+              slidesPerView: 3, // Show 3 slides at a time
+            },
+            1024: {
+              // Desktops
+              slidesPerView: 4, // Show 4 slides at a time
+            },
+            1280: {
+              // Larger desktops
+              slidesPerView: 5, // Show 5 slides at a time
+            },
           }}
           className="rounded-xl"
         >

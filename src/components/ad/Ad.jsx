@@ -3,7 +3,7 @@ import React from "react";
 export default function Ad() {
   return (
     <div className="w-full py-10">
-      <div className="max-w-screen-xl gap-4 grid grid-cols-3 mx-auto px-2 ">
+      <div className="max-w-screen-xl gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto px-2 ">
         <div className="relative">
           <img
             src="https://live.themewild.com/medion/assets/img/banner/mini-banner-1.jpg"className="w-full h-full"
