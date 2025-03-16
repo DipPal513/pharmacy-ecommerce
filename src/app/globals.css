@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --main-color: #03a297;
 }
 
 @theme inline {
@@ -14,13 +15,20 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
+    --background: @apply bg-gray-50;
     --foreground: #ededed;
   }
 }
 
+.maincolor {
+  color: var(--main-color);
+}
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.item:hover .image-container .icons {
+  bottom: 10px;
 }
