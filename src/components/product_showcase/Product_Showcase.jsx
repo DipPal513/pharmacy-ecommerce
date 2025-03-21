@@ -58,7 +58,7 @@ export default function Product_Showcase({ title }) {
               &#10095;
             </div>
             {[0, 0, 0, 0, 0, 0, 0].map((element, index) => (
-              <SwiperSlide>
+              <SwiperSlide key={index}>
                 <Product />
               </SwiperSlide>
             ))}

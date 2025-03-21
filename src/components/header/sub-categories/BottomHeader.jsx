@@ -1,7 +1,14 @@
 "use client";
 
+import {
+  Heart,
+  Menu,
+  Search,
+  ShoppingCartIcon,
+  User
+} from "lucide-react";
 import { useState } from "react";
-import { FaShoppingCart, FaHeart, FaSearch, FaUser, FaBars } from "react-icons/fa"; // Importing FaUser for sign-in icon and FaBars for the menu icon
+// Importing FaUser for sign-in icon and FaBars for the menu icon
 
 export default function BottomHeader() {
   const [selectedCategory, setSelectedCategory] = useState("Electronics");
@@ -25,10 +32,11 @@ export default function BottomHeader() {
   return (
     <div className="bg-white shadow-md py-4 px-6">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center space-x-8">
-
         {/* Left: Logo/Icon */}
         <div className="flex items-center ">
-          <div className="text-3xl font-bold text-blue-600 cursor-pointer">Logo</div>
+          <div className="text-3xl font-bold text-blue-600 cursor-pointer">
+            Logo
+          </div>
         </div>
 
         {/* Middle: Category Dropdown and Search Bar (Visible on larger screens) */}
@@ -53,7 +61,7 @@ export default function BottomHeader() {
               placeholder="Search..."
               className="py-2 px-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <FaSearch className="text-gray-500 text-xl mr-3" />
+            <Search className="text-gray-500 text-xl mr-3" />
           </div>
         </div>
 
@@ -64,31 +72,31 @@ export default function BottomHeader() {
             onClick={toggleSearchModal}
             className="md:hidden flex items-center space-x-2 cursor-pointer"
           >
-            <FaSearch className="text-blue-500 text-xl hover:text-blue-700" />
+            <Search className="text-blue-500 text-xl hover:text-blue-700" />
             <span className="hidden md:block text-gray-600">Search</span>
           </button>
 
           {/* Sign In Button */}
           <div className="flex items-center space-x-2 cursor-pointer">
-            <FaUser className="text-blue-500 text-xl hover:text-blue-700" />
+            <User className="text-blue-500 text-xl hover:text-blue-700" />
             <span className="hidden md:block text-gray-600">Sign In</span>
           </div>
 
           {/* Wishlist Icon and Text */}
           <div className="flex items-center space-x-2 cursor-pointer">
-            <FaHeart className="text-red-500 text-xl hover:text-red-700" />
+            <Heart className="text-red-500 text-xl hover:text-red-700" />
             <span className="hidden md:block text-gray-600">Wishlist</span>
           </div>
 
           {/* Cart Icon and Text */}
           <div className="flex items-center space-x-2 cursor-pointer">
-            <FaShoppingCart className="text-green-500 text-xl hover:text-green-700" />
+            <ShoppingCartIcon className="text-green-500 text-xl hover:text-green-700" />
             <span className="hidden md:block text-gray-600">Cart</span>
           </div>
 
           {/* Menu Icon (Hamburger menu for mobile) */}
           <div className="md:hidden flex items-center space-x-2 cursor-pointer">
-            <FaBars className="text-gray-600 text-2xl hover:text-gray-800" />
+            <Menu className="text-gray-600 text-2xl hover:text-gray-800" />
           </div>
         </div>
       </div>
