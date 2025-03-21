@@ -1,12 +1,14 @@
 import React from "react";
 
 import {
-  FaFacebook,
-  FaTwitter,
-  FaInstagram,
-  FaCartArrowDown,
-} from "react-icons/fa";
-import { MdStar, MdStarHalf, MdStarBorder } from "react-icons/md";
+  Facebook,
+  Twitter,
+  Instagram,
+  ShoppingCart,
+  Star,
+  StarHalf,
+  StarOff,
+} from "lucide-react";
 
 export default function Product() {
   return (
@@ -15,17 +17,17 @@ export default function Product() {
         <img
           src="https://live.themewild.com/medion/assets/img/product/05.png"
           alt="product image"
-          className="w-full h-auto object-cover transition-all duration-300 "
+          className="w-full h-auto object-cover transition-all duration-300"
         />
         <div className="icons w-full items-center flex justify-center transition-all duration-300 absolute -bottom-10 z-10 gap-4">
           <div className="bg-white p-2 rounded-full">
-            <FaFacebook className="text-blue-600" />
+            <Facebook className="text-blue-600" />
           </div>
           <div className="bg-white p-2 rounded-full">
-            <FaTwitter className="text-blue-400" />
+            <Twitter className="text-blue-400" />
           </div>
           <div className="bg-white p-2 rounded-full">
-            <FaInstagram className="text-pink-600" />
+            <Instagram className="text-pink-600" />
           </div>
         </div>
       </div>
@@ -34,16 +36,16 @@ export default function Product() {
       </h3>
       <div className="text-xl star-ratings flex space-x-1 mb-4">
         {/* Rating Stars */}
-        <MdStar className="text-yellow-400" />
-        <MdStar className="text-yellow-400" />
-        <MdStar className="text-yellow-400" />
-        <MdStarHalf className="text-yellow-400" />
-        <MdStarBorder className="text-yellow-400" />
+        <Star className="text-yellow-400" />
+        <Star className="text-yellow-400" />
+        <Star className="text-yellow-400" />
+        <StarHalf className="text-yellow-400" />
+        <StarOff className="text-yellow-400" />
       </div>
       <div className="flex w-full items-center justify-between">
         <p className="text-red-700 font-semibold text-lg">$250.00</p>
         <div className="">
-          <FaCartArrowDown className="maincolor text-3xl cursor-pointer" />
+          <ShoppingCart className="maincolor text-3xl cursor-pointer" />
         </div>
       </div>
     </div>

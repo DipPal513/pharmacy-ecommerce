@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { FaArrowRight } from "react-icons/fa";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css"; // Import Swiper styles
 import Product from "../product/Product"; // Your product component
@@ -13,7 +13,7 @@ export default function Product_Showcase({ title }) {
           <h3 className="font-semibold text-2xl mb-8">{title}</h3>
           <button className="flex text-blue-500 font-semibold items-center gap-2">
             <span>View More</span>
-            <FaArrowRight />
+            <ArrowRight className="w-5 h-5" />
           </button>
         </div>
 
@@ -52,12 +52,12 @@ export default function Product_Showcase({ title }) {
         >
           <div className="relative">
             <div className="swiper-button-prev absolute left-0 top-1/2 transform -translate-y-1/2 text-white bg-black p-2 rounded-full cursor-pointer">
-              &#10094;
+              <ChevronLeft className="w-6 h-6" />
             </div>
             <div className="swiper-button-next absolute right-0 top-1/2 transform -translate-y-1/2 text-white bg-black p-2 rounded-full cursor-pointer">
-              &#10095;
+              <ChevronRight className="w-6 h-6" />
             </div>
-            {[0, 0, 0, 0, 0, 0, 0].map((element, index) => (
+            {[0, 0, 0, 0, 0, 0, 0].map((_, index) => (
               <SwiperSlide key={index}>
                 <Product />
               </SwiperSlide>

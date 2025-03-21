@@ -1,5 +1,5 @@
+import { CarFrontIcon, StarIcon } from "lucide-react";
 import React from "react";
-import { FaCartPlus, FaStar } from "react-icons/fa";
 
 export default function Mini_Product_Card() {
   return (
@@ -14,17 +14,17 @@ export default function Mini_Product_Card() {
       <div className="relative">
         <h3 className="font-semibold text-xl">Surgical Face Mask</h3>
         <div className="stars flex my-2 text-xl text-yellow-500">
-          <FaStar />
-          <FaStar />
-          <FaStar />
-          <FaStar />
+          <StarIcon />
+          <StarIcon />
+          <StarIcon />
+          <StarIcon />
         </div>
         <div className="price flex items-center gap-3">
           <p className=" line-through semibold">$400</p>
           <p className=" text-red-600 semibold">$300</p>
         </div>
         <div className="cart absolute bg-white rounded-full p-4 -bottom-5 -right-5">
-          <FaCartPlus />
+          <CarFrontIcon />
         </div>
       </div>
     </div>
