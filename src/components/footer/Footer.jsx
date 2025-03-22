@@ -1,14 +1,6 @@
 "use client";
-import { FacebookIcon, PhoneIcon, TwitterIcon } from "lucide-react";
-import {
-  Phone,
-  Mail,
-  Navigation,
-  Facebook,
-  Instagram,
-  Twitter,
-  Linkedin,
-} from "lucide-react";
+import { FacebookIcon, Instagram, Linkedin, Mail, PhoneIcon, TwitterIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -34,30 +26,30 @@ export default function Footer() {
               <Location /> <span>123 Your Street, City, Country</span>
             </p>
             <div className="flex space-x-4">
-              <a
+              <Link
                 href="#"
                 className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded-full transition duration-300"
               >
                 <FacebookIcon />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="bg-pink-500 hover:bg-pink-700 text-white p-2 rounded-full transition duration-300"
               >
                 <Instagram />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="bg-blue-400 hover:bg-blue-600 text-white p-2 rounded-full transition duration-300"
               >
                 <TwitterIcon />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="bg-blue-800 hover:bg-blue-900 text-white p-2 rounded-full transition duration-300"
               >
                 <Linkedin />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -67,44 +59,44 @@ export default function Footer() {
           <h4 className="font-semibold text-lg">Quick Links</h4>
           <ul className="space-y-3">
             <li>
-              <a
+              <Link
                 href="#"
                 className="hover:text-blue-500 hover:translate-x-2 cursor-pointer transition duration-300"
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="hover:text-blue-500 hover:translate-x-2 cursor-pointer transition duration-300"
               >
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="hover:text-blue-500 hover:translate-x-2 cursor-pointer transition duration-300"
               >
                 Services
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="hover:text-blue-500 hover:translate-x-2 cursor-pointer transition duration-300"
               >
                 Blog
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="hover:text-blue-500 hover:translate-x-2 cursor-pointer transition duration-300"
               >
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -114,44 +106,44 @@ export default function Footer() {
           <h4 className="font-semibold text-lg">Browse Categories</h4>
           <ul className="space-y-3">
             <li>
-              <a
+              <Link
                 href="#"
                 className="hover:text-blue-500 hover:translate-x-2 cursor-pointer transition duration-300"
               >
                 Technology
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="hover:text-blue-500 hover:translate-x-2 cursor-pointer transition duration-300"
               >
                 Business
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="hover:text-blue-500 hover:translate-x-2 cursor-pointer transition duration-300"
               >
                 Health
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="hover:text-blue-500 hover:translate-x-2 cursor-pointer transition duration-300"
               >
                 Education
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="hover:text-blue-500 hover:translate-x-2 cursor-pointer transition duration-300"
               >
                 Lifestyle
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -161,44 +153,44 @@ export default function Footer() {
           <h4 className="font-semibold text-lg">Support Center</h4>
           <ul className="space-y-3">
             <li>
-              <a
+              <Link
                 href="#"
                 className="hover:text-blue-500 hover:translate-x-2 cursor-pointer transition duration-300"
               >
                 FAQs
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="hover:text-blue-500 hover:translate-x-2 cursor-pointer transition duration-300"
               >
                 Help Desk
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="hover:text-blue-500 hover:translate-x-2 cursor-pointer transition duration-300"
               >
                 Order Status
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="hover:text-blue-500 hover:translate-x-2 cursor-pointer transition duration-300"
               >
                 Returns
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="hover:text-blue-500 hover:translate-x-2 cursor-pointer transition duration-300"
               >
                 Shipping Info
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -207,18 +199,18 @@ export default function Footer() {
         <div className="flex flex-col space-y-6">
           <h4 className="font-semibold text-lg">Get Our Apps</h4>
           <div className="flex space-x-4">
-            <a
+            <Link
               href="#"
               className="bg-black text-white py-3 px-6 rounded-lg hover:bg-gray-700 transition duration-300"
             >
               App Store
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="bg-black text-white py-3 px-6 rounded-lg hover:bg-gray-700 transition duration-300"
             >
               Google Play
-            </a>
+            </Link>
           </div>
         </div>
       </div>
