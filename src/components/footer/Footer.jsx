@@ -1,5 +1,13 @@
 "use client";
-import { FacebookIcon, Instagram, Linkedin, Mail, PhoneIcon, TwitterIcon } from "lucide-react";
+import {
+  FacebookIcon,
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  PhoneIcon,
+  TwitterIcon,
+} from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
@@ -23,7 +31,7 @@ export default function Footer() {
               <Mail /> <span>contact@yourwebsite.com</span>
             </p>
             <p className="flex items-center space-x-3">
-              <Location /> <span>123 Your Street, City, Country</span>
+              <MapPin /> <span>123 Your Street, City, Country</span>
             </p>
             <div className="flex space-x-4">
               <Link
