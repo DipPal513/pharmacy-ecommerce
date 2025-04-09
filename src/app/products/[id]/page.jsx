@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { StarIcon, Heart, ShoppingCart } from "lucide-react";
+import Product from "@/components/product/Product";
 
 const ProductDetailsPage = () => {
     const [selectedImage, setSelectedImage] = useState(
@@ -186,18 +187,7 @@ const ProductDetailsPage = () => {
                 <h2 className="text-xl font-semibold mb-4">Related Products</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {[1, 2, 3, 4].map((item) => (
-                        <div
-                            key={item}
-                            className="border rounded-xl p-4 shadow hover:shadow-md transition"
-                        >
-                            <img
-                                src={`/images/product${item}.jpg`}
-                                alt="Related Product"
-                                className="w-full h-48 object-cover rounded-md"
-                            />
-                            <h3 className="mt-2 font-medium">Related Product {item}</h3>
-                            <p className="text-gray-600 text-sm">$49.99</p>
-                        </div>
+                     <Product />
                     ))}
                 </div>
             </div>
