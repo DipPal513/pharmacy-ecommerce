@@ -1,21 +1,19 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
-import { ChevronRight, Layers } from "lucide-react"
+import { ChevronRight, Layers, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export default function NestedDropdown() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeItem, setActiveItem] = useState(null)
   const [activeSubItem, setActiveSubItem] = useState(null)
+  const [isMobile, setIsMobile] = useState(false)
 
-  // Refs for each menu level
   const mainButtonRef = useRef(null)
   const firstLevelRef = useRef(null)
   const secondLevelRef = useRef(null)
   const thirdLevelRef = useRef(null)
-
-  // Timeout refs for delayed closing
   const closeTimeoutRef = useRef(null)
 
   const mainItems = [
@@ -85,7 +83,16 @@ export default function NestedDropdown() {
     701: ["Cleansers", "Moisturizers", "Serums"],
   }
 
-  // Function to handle mouse enter on any menu element
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
   const handleMouseEnter = () => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current)
@@ -93,25 +100,14 @@ export default function NestedDropdown() {
     }
   }
 
-  // Function to handle mouse leave with delay
   const handleMouseLeave = () => {
     closeTimeoutRef.current = setTimeout(() => {
-      // Check if mouse is over any of our menu elements before closing
-      const isMouseOverMenu =
-        document.activeElement === mainButtonRef.current ||
-        document.activeElement === firstLevelRef.current ||
-        document.activeElement === secondLevelRef.current ||
-        document.activeElement === thirdLevelRef.current
-
-      if (!isMouseOverMenu) {
-        setIsOpen(false)
-        setActiveItem(null)
-        setActiveSubItem(null)
-      }
-    }, 300) // 300ms delay before closing
+      setIsOpen(false)
+      setActiveItem(null)
+      setActiveSubItem(null)
+    }, 300)
   }
 
-  // Clean up timeouts on unmount
   useEffect(() => {
     return () => {
       if (closeTimeoutRef.current) {
@@ -121,101 +117,148 @@ export default function NestedDropdown() {
   }, [])
 
   return (
-<div className="bg-gray-100">
-    <div className="max-w-screen-xl mx-auto relative py-3" onMouseLeave={handleMouseLeave}>
-      {/* Main Category Button */}
-      <button
-        ref={mainButtonRef}
-        className={cn(
-          "flex items-center gap-2 px-4 py-3 rounded transition-all duration-200 border",
-          isOpen ? "bg-primary text-primary-foreground shadow-lg scale-105" : "bg-background hover:bg-muted",
+    <div className="bg-gray-100">
+      <div className="max-w-screen-xl mx-auto relative py-3">
+        {/* Main Category Button */}
+        <button
+          ref={mainButtonRef}
+          className={cn(
+            "flex items-center gap-2 px-4 py-3 rounded transition-all duration-200 border",
+            isOpen ? "bg-primary text-primary-foreground shadow-lg scale-105" : "bg-background hover:bg-muted",
+          )}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <Layers className={cn("h-5 w-5", isOpen ? "animate-pulse" : "")} />
+          <span className="font-medium">Categories</span>
+        </button>
+
+        {/* Mobile Dropdown */}
+        {isMobile && isOpen && (
+          <div className="fixed inset-0 bg-white z-50 overflow-y-auto">
+            <div className="flex justify-between items-center p-4 border-b">
+              <h2 className="text-lg font-medium">Categories</h2>
+              <button onClick={() => setIsOpen(false)}>
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            <div className="p-4">
+              <ul>
+                {mainItems.map((item) => (
+                  <li key={item.id} className="py-2 border-b">
+                    <button
+                      className="w-full text-left"
+                      onClick={() => setActiveItem(activeItem === item.id ? null : item.id)}
+                    >
+                      {item.label}
+                    </button>
+                    {activeItem === item.id && subItems[item.id] && (
+                      <ul className="pl-4 mt-2">
+                        {subItems[item.id].map((subItem) => (
+                          <li key={subItem.id} className="py-1">
+                            <button
+                              className="w-full text-left"
+                              onClick={() => setActiveSubItem(activeSubItem === subItem.id ? null : subItem.id)}
+                            >
+                              {subItem.label}
+                            </button>
+                            {activeSubItem === subItem.id && tertiaryItems[subItem.id] && (
+                              <ul className="pl-4 mt-1">
+                                {tertiaryItems[subItem.id].map((tertiaryItem, index) => (
+                                  <li key={index} className="py-1">
+                                    {tertiaryItem}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         )}
-        onMouseEnter={() => {
-          handleMouseEnter()
-          setIsOpen(true)
-        }}
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <Layers className={cn("h-5 w-5", isOpen ? "animate-pulse" : "")} />
-        <span className="font-medium">Categories</span>
-      </button>
 
-      {/* First Level Dropdown */}
-      {isOpen && (
-        <div
-          ref={firstLevelRef}
-          className="absolute left-0 top-full mt-2 w-48 rounded-lg border bg-background shadow-lg z-50"
-          onMouseEnter={handleMouseEnter}
-        >
-          <ul className="py-2">
-            {mainItems.map((item) => (
-              <li
-                key={item.id}
-                className={cn(
-                  "px-4 py-2 hover:bg-muted flex justify-between items-center cursor-pointer",
-                  activeItem === item.id && "bg-muted",
-                )}
-                onMouseEnter={() => {
-                  handleMouseEnter()
-                  setActiveItem(item.id)
-                }}
+        {/* Desktop Dropdown */}
+        {!isMobile && isOpen && (
+          <div onMouseLeave={handleMouseLeave}>
+            {/* First Level Dropdown */}
+            <div
+              ref={firstLevelRef}
+              className="absolute left-0 top-full mt-2 w-48 rounded-lg border bg-background shadow-lg z-50"
+              onMouseEnter={handleMouseEnter}
+            >
+              <ul className="py-2">
+                {mainItems.map((item) => (
+                  <li
+                    key={item.id}
+                    className={cn(
+                      "px-4 py-2 hover:bg-muted flex justify-between items-center cursor-pointer",
+                      activeItem === item.id && "bg-muted",
+                    )}
+                    onMouseEnter={() => {
+                      handleMouseEnter()
+                      setActiveItem(item.id)
+                    }}
+                  >
+                    <span>{item.label}</span>
+                    {subItems[item.id] && <ChevronRight className="h-4 w-4" />}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Second Level Dropdown */}
+            {activeItem !== null && subItems[activeItem] && (
+              <div
+                ref={secondLevelRef}
+                className="absolute left-44 top-full w-48 rounded-lg border bg-background shadow-lg z-50"
+                onMouseEnter={handleMouseEnter}
+                style={{ marginLeft: "4px" }}
               >
-                <span>{item.label}</span>
-                {subItems[item.id] && <ChevronRight className="h-4 w-4" />}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+                <ul className="py-2">
+                  {subItems[activeItem].map((subItem) => (
+                    <li
+                      key={subItem.id}
+                      className={cn(
+                        "px-4 py-2 hover:bg-muted flex justify-between items-center cursor-pointer",
+                        activeSubItem === subItem.id && "bg-muted",
+                      )}
+                      onMouseEnter={() => {
+                        handleMouseEnter()
+                        setActiveSubItem(subItem.id)
+                      }}
+                    >
+                      <span>{subItem.label}</span>
+                      {tertiaryItems[subItem.id] && <ChevronRight className="h-4 w-4" />}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
-      {/* Second Level Dropdown - Positioned with negative margin for overlap */}
-      {isOpen && activeItem !== null && subItems[activeItem] && (
-        <div
-          ref={secondLevelRef}
-          className="absolute left-44 top-2 w-48 rounded-lg border bg-background shadow-lg z-50"
-          onMouseEnter={handleMouseEnter}
-          style={{ marginLeft: "4px" }} // Small overlap with first menu
-        >
-          <ul className="py-2">
-            {subItems[activeItem].map((subItem) => (
-              <li
-                key={subItem.id}
-                className={cn(
-                  "px-4 py-2 hover:bg-muted flex justify-between items-center cursor-pointer",
-                  activeSubItem === subItem.id && "bg-muted",
-                )}
-                onMouseEnter={() => {
-                  handleMouseEnter()
-                  setActiveSubItem(subItem.id)
-                }}
+            {/* Third Level Dropdown */}
+            {activeSubItem !== null && tertiaryItems[activeSubItem] && (
+              <div
+                ref={thirdLevelRef}
+                className="absolute left-92 top-full w-48 rounded-lg border bg-background shadow-lg z-50"
+                onMouseEnter={handleMouseEnter}
+                style={{ marginLeft: "4px" }}
               >
-                <span>{subItem.label}</span>
-                {tertiaryItems[subItem.id] && <ChevronRight className="h-4 w-4" />}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {/* Third Level Dropdown - Positioned with negative margin for overlap */}
-      {isOpen && activeSubItem !== null && tertiaryItems[activeSubItem] && (
-        <div
-          ref={thirdLevelRef}
-          className="absolute left-92 top-2 w-48 rounded-lg border bg-background shadow-lg z-50"
-          onMouseEnter={handleMouseEnter}
-          style={{ marginLeft: "4px" }} // Small overlap with second menu
-        >
-          <ul className="py-2">
-            {tertiaryItems[activeSubItem].map((tertiaryItem, index) => (
-              <li key={index} className="px-4 py-2 hover:bg-muted cursor-pointer" onMouseEnter={handleMouseEnter}>
-                {tertiaryItem}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+                <ul className="py-2">
+                  {tertiaryItems[activeSubItem].map((tertiaryItem, index) => (
+                    <li key={index} className="px-4 py-2 hover:bg-muted cursor-pointer" onMouseEnter={handleMouseEnter}>
+                      {tertiaryItem}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
-
