@@ -7,6 +7,7 @@ import {
   ShoppingCartIcon,
   User
 } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 // Importing FaUser for sign-in icon and FaBars for the menu icon
 
@@ -89,10 +90,10 @@ export default function BottomHeader() {
           </div>
 
           {/* Cart Icon and Text */}
-          <div className="flex items-center space-x-2 cursor-pointer">
+          <Link href={"/cart"} className="flex items-center space-x-2 cursor-pointer">
             <ShoppingCartIcon className="text-green-500 text-xl hover:text-green-700" />
             <span className="hidden md:block text-gray-600">Cart</span>
-          </div>
+          </Link>
 
           {/* Menu Icon (Hamburger menu for mobile) */}
           <div className="md:hidden flex items-center space-x-2 cursor-pointer">
