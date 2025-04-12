@@ -14,7 +14,7 @@ import Link from "next/link";
 export default function Product() {
   return (
     <div className="product item transition-all duration-500 ease-in-out transform hover:scale-102 rounded-lg bg-[#EBF8F7] p-3 shadow hover:shadow-sm cursor-pointer">
-      <Link href={"/products/5"} className="relative image-container overflow-hidden rounded-lg">
+      <Link href={"/products/5"} className="relative image-container block overflow-hidden rounded-lg">
         <img
           src="https://live.themewild.com/medion/assets/img/product/05.png"
           alt="product image"

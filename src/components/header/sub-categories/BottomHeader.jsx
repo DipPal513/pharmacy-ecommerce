@@ -35,11 +35,11 @@ export default function BottomHeader() {
     <div className="bg-white shadow-md py-4 px-6">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center space-x-8">
         {/* Left: Logo/Icon */}
-        <div className="flex items-center ">
+        <Link href={"/"} className="flex items-center ">
           <div className="text-3xl font-bold text-blue-600 cursor-pointer">
             Logo
           </div>
-        </div>
+        </Link>
 
         {/* Middle: Category Dropdown and Search Bar (Visible on larger screens) */}
         <div className="hidden md:flex items-center w-full md:w-1/2 lg:w-1/3 relative">
