@@ -1,32 +1,35 @@
 "use client";
 import React, { useState } from "react";
 import { X } from "lucide-react";
+import { useCart } from "@/context/CartContext"; // Ensure this path is correct
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const CartPage = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      image: "https://via.placeholder.com/80",
-      name: "Product A",
-      price: 1500,
-      quantity: 2,
-    },
-    {
-      id: 2,
-      image: "https://via.placeholder.com/80",
-      name: "Product B",
-      price: 1500,
-      quantity: 1,
-    },
-  ]);
+  const router = useRouter();
+  const {
+    cartItems = [],
+    cartQuantity = 0,
+    cartTotal = 0,
+    removeFromCart,
+    clearCart,
+  } = useCart() || {}; // Fallback to avoid undefined errors
 
   const [coupon, setCoupon] = useState("");
 
   const handleRemove = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+    if (removeFromCart) {
+      removeFromCart(id);
+    } else {
+      console.error("removeFromCart function is not available.");
+    }
   };
 
   const handleApplyCoupon = () => {
+    if (!coupon.trim()) {
+      alert("Please enter a valid coupon code.");
+      return;
+    }
     // Optional: apply coupon logic here
     alert(`Applied coupon: ${coupon}`);
   };
@@ -35,9 +38,9 @@ const CartPage = () => {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-  const discount = 5;
-  const shipping = 0;
-  const taxes = 25;
+  const discount = 5; // Example discount
+  const shipping = 0; // Example shipping cost
+  const taxes = 25; // Example taxes
   const total = subtotal - discount + taxes + shipping;
 
   return (
@@ -47,14 +50,14 @@ const CartPage = () => {
         <h2 className="text-2xl font-bold mb-4 text-black">Shopping Cart</h2>
         <div className="overflow-x-auto">
           <table className="w-full border text-black">
-            <thead className="">
+            <thead>
               <tr>
-                <th className="p-3">Image</th>
-                <th className="p-3">Product Name</th>
-                <th className="p-3">Price</th>
-                <th className="p-3">Quantity</th>
-                <th className="p-3">Sub Total</th>
-                {/* <th className="p-3">Action</th> */}
+                <th className="p-3 text-left">Image</th>
+                <th className="p-3 text-left">Product Name</th>
+                <th className="p-3 text-left">Price</th>
+                <th className="p-3 text-left">Quantity</th>
+                <th className="p-3 text-left">Sub Total</th>
+                <th className="p-3 text-left">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -135,7 +138,18 @@ const CartPage = () => {
           <span>${total.toFixed(2)}</span>
         </div>
 
-        <button className="w-full mt-6 bg-[var(--main-color)] hover:bg-[#1e40af] text-white py-2 rounded">
+        <button
+          onClick={() => {
+            if (cartItems.length === 0) {
+              toast.error("Your cart is empty. Add items to proceed.");
+              return;
+            }
+            router.push("/checkout")
+            // Proceed to checkout logic
+            toast.success("Proceeding to checkout...");
+          }}
+          className="w-full mt-6 bg-[var(--main-color)] hover:bg-[#1e40af] text-white py-2 rounded cursor-pointer"
+        >
           Proceed to Checkout
         </button>
       </div>

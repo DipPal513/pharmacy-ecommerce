@@ -2,6 +2,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
+import { CartProvider } from "@/context/CartContext";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
   variable: "--font-Inter",
@@ -20,9 +22,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.variable}  antialiased`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <CartProvider>
+          <Toaster position="top-center"/>
+          <Header />
+          {children}
+          <Footer />
+          </CartProvider>
       </body>
     </html>
   );

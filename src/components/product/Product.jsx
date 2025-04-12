@@ -9,11 +9,12 @@ import {
   StarHalf,
   StarOff,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function Product() {
   return (
     <div className="product item transition-all duration-500 ease-in-out transform hover:scale-102 rounded-lg bg-[#EBF8F7] p-3 shadow hover:shadow-sm cursor-pointer">
-      <div className="relative image-container overflow-hidden rounded-lg">
+      <Link href={"/products/5"} className="relative image-container overflow-hidden rounded-lg">
         <img
           src="https://live.themewild.com/medion/assets/img/product/05.png"
           alt="product image"
@@ -30,7 +31,7 @@ export default function Product() {
             <Instagram className="text-pink-600" />
           </div>
         </div>
-      </div>
+      </Link>
       <h3 className="font-semibold mt-6 capitalize text-xl mb-4">
         Surgical Face Mask
       </h3>

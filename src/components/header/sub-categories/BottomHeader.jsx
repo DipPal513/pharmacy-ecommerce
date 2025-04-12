@@ -1,5 +1,6 @@
 "use client";
 
+import { useCart } from "@/context/CartContext";
 import {
   Heart,
   Menu,
@@ -29,7 +30,7 @@ export default function BottomHeader() {
   const toggleSearchModal = () => {
     setIsSearchModalOpen(!isSearchModalOpen);
   };
-
+  const {cartQuantity } = useCart();
   return (
     <div className="bg-white shadow-md py-4 px-6">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center space-x-8">
@@ -92,6 +93,7 @@ export default function BottomHeader() {
           {/* Cart Icon and Text */}
           <Link href={"/cart"} className="flex items-center space-x-2 cursor-pointer">
             <ShoppingCartIcon className="text-green-500 text-xl hover:text-green-700" />
+            <sup className="bg-blue-500 py-2 px-3 text-sm rounded-full text-white">{cartQuantity}</sup>
             <span className="hidden md:block text-gray-600">Cart</span>
           </Link>
 
