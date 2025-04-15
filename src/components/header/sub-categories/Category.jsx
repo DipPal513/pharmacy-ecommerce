@@ -3,8 +3,9 @@
 import { useRef, useState, useEffect } from "react"
 import { ChevronRight, Layers, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { FaBars } from "react-icons/fa"
 
-export default function NestedDropdown() {
+export default function NestedDropdown({isGray=false}) {
   const [isOpen, setIsOpen] = useState(false)
   const [activeItem, setActiveItem] = useState(null)
   const [activeSubItem, setActiveSubItem] = useState(null)
@@ -117,7 +118,7 @@ export default function NestedDropdown() {
   }, [])
 
   return (
-    <div className="bg-gray-100">
+    <div className={`${isGray && "bg-gray-100"}`}>
       <div className="max-w-screen-xl mx-auto relative py-3">
         {/* Main Category Button */}
         <button
@@ -128,8 +129,8 @@ export default function NestedDropdown() {
           )}
           onClick={() => setIsOpen(!isOpen)}
         >
-          <Layers className={cn("h-5 w-5", isOpen ? "animate-pulse" : "")} />
-          <span className="font-medium">Categories</span>
+          <FaBars className={cn("h-5 w-5", isOpen ? "animate-pulse" : "")} />
+          <span className="font-medium hidden sm:flex">Categories</span>
         </button>
 
         {/* Mobile Dropdown */}

@@ -2,15 +2,16 @@
 
 import { useCart } from "@/context/CartContext";
 import {
-  Heart,
-  Menu,
-  Search,
-  ShoppingCartIcon,
-  User
-} from "lucide-react";
+  FaHeart,
+  FaBars,
+  FaSearch,
+  FaShoppingCart,
+  FaUser,
+} from "react-icons/fa";
 import Link from "next/link";
 import { useState } from "react";
-// Importing FaUser for sign-in icon and FaBars for the menu icon
+import Top_Category from "@/components/top_category/Top_Category";
+import NestedDropdown from "./Category";
 
 export default function BottomHeader() {
   const [selectedCategory, setSelectedCategory] = useState("Electronics");
@@ -30,24 +31,29 @@ export default function BottomHeader() {
   const toggleSearchModal = () => {
     setIsSearchModalOpen(!isSearchModalOpen);
   };
-  const {cartQuantity } = useCart();
+  const { cartQuantity } = useCart();
   return (
     <div className="bg-white shadow-md py-4 px-6">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center space-x-8">
         {/* Left: Logo/Icon */}
         <Link href={"/"} className="flex items-center ">
           <div className="text-3xl font-bold text-blue-600 cursor-pointer">
-            Logo
+            <img
+              src="https://live.themewild.com/medion/assets/img/logo/logo.png"
+              width={200}
+            />
           </div>
         </Link>
-
+        <div className="hidden sm:flex">
+          <NestedDropdown />
+        </div>
         {/* Middle: Category Dropdown and Search Bar (Visible on larger screens) */}
-        <div className="hidden md:flex items-center w-full md:w-1/2 lg:w-1/3 relative">
+        <div className="hidden md:flex items-center w-full md:w-1/3  relative border-[var(--main-color)] border-2 rounded-full text-xl">
           {/* Category Dropdown */}
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="py-[10px] px-4 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 border-r-0"
+            className="py-[8.9px] px-4 border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 w-full focus:ring-blue-500 border-r-0"
           >
             {categories.map((category, index) => (
               <option key={index} value={category}>
@@ -57,54 +63,55 @@ export default function BottomHeader() {
           </select>
 
           {/* Search Input */}
-          <div className="flex items-center border border-gray-300 rounded-r-md">
+          <div className="flex items-center border border-gray-300 rounded-r-full w-full">
             <input
               type="text"
               placeholder="Search..."
               className="py-2 px-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <Search className="text-gray-500 text-xl mr-3" />
+            <FaSearch className="text-gray-500 text-xl mr-3" />
           </div>
         </div>
 
         {/* Right: Sign In, Wishlist, and Cart Icons with Text */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center text-2xl space-x-5">
           {/* Search Button (Visible on mobile) */}
           <button
             onClick={toggleSearchModal}
             className="md:hidden flex items-center space-x-2 cursor-pointer"
           >
-            <Search className="text-blue-500 text-xl hover:text-blue-700" />
+            <FaSearch className=" text-xl text-[var(--main-color)]" />
             <span className="hidden md:block text-gray-600">Search</span>
           </button>
 
           {/* Sign In Button */}
-          <div className="flex items-center space-x-2 cursor-pointer">
-            <User className="text-blue-500 text-xl hover:text-blue-700" />
-            <span className="hidden md:block text-gray-600">Sign In</span>
+          <div className="flex items-center space-x-2 cursor-pointer bg-gray-100 px-2 py-2 rounded-full text-[var(--main-color)]">
+            <FaUser className="" />
           </div>
 
           {/* Wishlist Icon and Text */}
-          <div className="flex items-center space-x-2 cursor-pointer">
-            <Heart className="text-red-500 text-xl hover:text-red-700" />
-            <span className="hidden md:block text-gray-600">Wishlist</span>
+          <div className="hidden sm:flex items-center space-x-2 cursor-pointer bg-gray-100 px-2 py-2 rounded-full text-[var(--main-color)]">
+            <FaHeart className="" />
           </div>
 
           {/* Cart Icon and Text */}
-          <Link href={"/cart"} className="flex items-center space-x-2 cursor-pointer">
-            <ShoppingCartIcon className="text-green-500 text-xl hover:text-green-700" />
-            <sup className="bg-blue-500 py-2 px-3 text-sm rounded-full text-white">{cartQuantity}</sup>
-            <span className="hidden md:block text-gray-600">Cart</span>
+          <Link
+            href={"/cart"}
+            className="flex items-center space-x-2 cursor-pointer  "
+          >
+            <FaShoppingCart className=" text-[var(--main-color)]" />
+            <sup className="text-sm bg-gray-400 px-2 py-1 rounded-full text-white">
+              {cartQuantity}
+            </sup>
           </Link>
 
           {/* Menu Icon (Hamburger menu for mobile) */}
           <div className="md:hidden flex items-center space-x-2 cursor-pointer">
-            <Menu className="text-gray-600 text-2xl hover:text-gray-800" />
+            <NestedDropdown isGray={false} />
           </div>
         </div>
       </div>
 
-      {/* Search Modal (Visible only on mobile when Search Button is clicked) */}
       {isSearchModalOpen && (
         <div
           className="fixed top-0 left-0 right-0 bg-white shadow-md py-8 px-3 z-50"

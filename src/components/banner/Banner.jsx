@@ -2,41 +2,162 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import "swiper/css"
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Banner = () => {
+  
+// Banner slides data
+const bannerSlides = [
+  {
+    id: 1,
+    title: "Medicine & Health Care",
+    subtitle: "For Your Family",
+    description:
+      "There are many variations of passages orem psum available but the majority have suffered alteration in some form by injected humour.",
+    price: "$250",
+    tag: "EASY HEALTH CARE",
+    image: "https://live.themewild.com/medion/assets/img/hero/01.png",
+    bgColor: "bg-cyan-50",
+    accentColor: "bg-teal-500",
+  },
+  {
+    id: 2,
+    title: "Beauty & Personal Care",
+    subtitle: "For Your Wellness",
+    description:
+      "Discover premium beauty products that enhance your natural glow and support your personal care routine.",
+    price: "$199",
+    tag: "PREMIUM CARE",
+    image: "https://live.themewild.com/medion/assets/img/hero/02.png",
+    bgColor: "bg-rose-50",
+    accentColor: "bg-rose-500",
+  },
+  {
+    id: 3,
+    title: "Supplements & Vitamins",
+    subtitle: "For Your Health",
+    description:
+      "Support your health with our range of high-quality supplements and vitamins designed for optimal wellbeing.",
+    price: "$120",
+    tag: "DAILY ESSENTIALS",
+    image: "https://live.themewild.com/medion/assets/img/hero/03.png",
+    bgColor: "bg-amber-50",
+    accentColor: "bg-amber-500",
+  },
+]
   return (
-    <div className="max-w-screen-xl mx-auto my-8">
-      <Swiper
-        spaceBetween={20}
-        slidesPerView={1} // Ensure only one slide at a time
-        loop={true}
-        pagination={{ clickable: true }}
-        navigation={{ prevEl: '.swiper-button-prev', nextEl: '.swiper-button-next' }}
-        className="rounded-xl  overflow-hidden"
-      >
-        <SwiperSlide>
-          <div className="relative rounded-xl overflow-hidden">
-            <img
-              src="https://plus.unsplash.com/premium_photo-1681426687411-21986b0626a8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaHxlbnwwfHwwfHx8MA%3D%3D"
-              alt="Banner Image 1"
-              className="w-full h-[80vh] object-cover"
-            />
-            <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white p-4">
-              <h2 className="text-2xl font-bold">Data 1</h2>
-              <p>Information about the first item goes here.</p>
-            </div>
-          </div>
-        </SwiperSlide>
+    <div className="mb-10 rounded-xl overflow-hidden max-w-screen-xl mx-auto mt-5">
  
-        {/* Navigation buttons */}
-        <div className="swiper-button-prev absolute left-0 top-1/2 transform -translate-y-1/2 text-white bg-black p-2 rounded-full cursor-pointer">
-          &#10094;
+      <Swiper
+        modules={[Navigation, Pagination, Autoplay]}
+        spaceBetween={0}
+        slidesPerView={1}
+       
+        pagination={{
+          clickable: true,
+          el: ".swiper-pagination",
+        }}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        loop={true}
+        className="rounded-xl"
+      >
+        {bannerSlides.map((slide) => (
+          <SwiperSlide key={slide.id}>
+            <div className={`${slide.bgColor} rounded-xl overflow-hidden`}>
+              <div className="flex flex-col md:flex-row items-center p-6 md:p-10">
+                <div className="md:w-1/2 mb-6 md:mb-0">
+                  <div className="inline-block">
+                    <div
+                      className={`${slide.accentColor} text-white px-4 py-2 text-sm font-bold relative`}
+                      style={{
+                        clipPath: "polygon(0 0, 100% 0, 95% 100%, 0% 100%)",
+                      }}
+                    >
+                      {slide.tag}
+                    </div>
+                  </div>
+
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mt-6">
+                    {slide.title} <br />
+                    <span className={`text-${slide.accentColor.replace("bg-", "")}`}>{slide.subtitle}</span>
+                  </h2>
+
+                  <p className="my-6 text-slate-600 max-w-md">{slide.description}</p>
+
+                  <div className="flex flex-wrap gap-4">
+                    <button
+                      className={`${slide.accentColor} text-white px-6 py-3 rounded-md font-medium flex items-center`}
+                    >
+                      Shop Now
+                      <svg
+                        className="ml-2 w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        ></path>
+                      </svg>
+                    </button>
+                    <button className="bg-white text-slate-800 px-6 py-3 rounded-md font-medium border border-slate-200 flex items-center">
+                      Learn More
+                      <svg
+                        className="ml-2 w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="md:w-1/2 relative">
+                  <div className="absolute top-4 right-4 md:top-10 md:right-10 bg-red-100 text-red-500 rounded-full p-4 font-bold flex flex-col items-center justify-center w-16 h-16 border-2 border-dashed border-red-300">
+                    <span className="text-xs">Price</span>
+                    <span>{slide.price}</span>
+                  </div>
+                  <img
+                    src={slide.image || "/placeholder.svg"}
+                    alt={slide.title}
+                    className="mx-auto max-h-80 object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+
+        {/* Custom navigation buttons */}
+        {/* <div className="swiper-button-prev absolute left-4 top-1/2 z-10 -translate-y-1/2 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-md cursor-pointer">
+          <ChevronLeft className="w-6 h-6 text-slate-700" />
         </div>
-        <div className="swiper-button-next absolute right-0 top-1/2 transform -translate-y-1/2 text-white bg-black p-2 rounded-full cursor-pointer">
-          &#10095;
-        </div>
+        <div className="swiper-button-next absolute right-4 top-1/2 z-10 -translate-y-1/2 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-md cursor-pointer">
+          <ChevronRight className="w-6 h-6 text-slate-700" />
+        </div> */}
+
+        {/* Custom pagination */}
+        <div className="swiper-pagination bottom-4"></div>
       </Swiper>
-    </div>
+   
+  </div>
+
   );
 };
 

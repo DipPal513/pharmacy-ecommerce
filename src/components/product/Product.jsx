@@ -1,14 +1,5 @@
 import React from "react";
-
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  ShoppingCart,
-  Star,
-  StarHalf,
-  StarOff,
-} from "lucide-react";
+import { FaFacebook, FaTwitter, FaInstagram, FaShoppingCart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import Link from "next/link";
 
 export default function Product() {
@@ -22,13 +13,13 @@ export default function Product() {
         />
         <div className="icons w-full items-center flex justify-center transition-all duration-300 absolute -bottom-10 z-10 gap-4">
           <div className="bg-white p-2 rounded-full">
-            <Facebook className="text-blue-600" />
+            <FaFacebook className="" />
           </div>
           <div className="bg-white p-2 rounded-full">
-            <Twitter className="text-blue-400" />
+            <FaTwitter className="" />
           </div>
           <div className="bg-white p-2 rounded-full">
-            <Instagram className="text-pink-600" />
+            <FaInstagram className="" />
           </div>
         </div>
       </Link>
@@ -37,16 +28,16 @@ export default function Product() {
       </h3>
       <div className="text-xl star-ratings flex space-x-1 mb-4">
         {/* Rating Stars */}
-        <Star className="text-yellow-400" />
-        <Star className="text-yellow-400" />
-        <Star className="text-yellow-400" />
-        <StarHalf className="text-yellow-400" />
-        <StarOff className="text-yellow-400" />
+        <FaStar className="text-yellow-400" />
+        <FaStar className="text-yellow-400" />
+        <FaStar className="text-yellow-400" />
+        <FaStarHalfAlt className="text-yellow-400" />
+        <FaRegStar className="text-yellow-400" />
       </div>
       <div className="flex w-full items-center justify-between">
         <p className="text-red-700 font-semibold text-lg">$250.00</p>
         <div className="">
-          <ShoppingCart className="maincolor text-3xl cursor-pointer" />
+          <FaShoppingCart className="maincolor text-3xl cursor-pointer" />
         </div>
       </div>
     </div>

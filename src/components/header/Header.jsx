@@ -8,7 +8,7 @@ export default function Header() {
     <>
       <TopHeader />
       <BottomHeader />
-      <Category />
+      {/* <Category /> */}
     </>
   );
 }

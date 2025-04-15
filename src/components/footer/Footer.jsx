@@ -15,7 +15,7 @@ export default function Footer() {
     <footer className="bg-[#023350ac] relative text-white py-16">
       <div className="max-w-screen-xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
         {/* 1st Column - Logo & Contact Details */}
-        <div className="flex flex-col space-y-6">
+        <div className="flex flex-col space-y-8">
           <div className="flex items-center space-x-3">
             <img
               src="https://yourlogo.com/logo.png"
@@ -27,10 +27,10 @@ export default function Footer() {
             <p className="flex items-center space-x-3">
               <PhoneIcon /> <span>+123 456 789</span>
             </p>
-            <p className="flex items-center space-x-3">
-              <Mail /> <span>contact@yourwebsite.com</span>
+            <p className="flex items-center my-4 space-x-3">
+              <Mail className="text-2xl"/> <span>contact@yourwebsite.com</span>
             </p>
-            <p className="flex items-center space-x-3">
+            <p className="flex items-center my-4 space-x-3">
               <MapPin /> <span>123 Your Street, City, Country</span>
             </p>
             <div className="flex space-x-4">

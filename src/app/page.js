@@ -13,8 +13,8 @@ export default function page() {
       <Ad/>
       <Special />
       <Product_Showcase title={"Trending Items"} />
-      <Product_Showcase title={"Featured Items"} />
-      <CountdownSlider />
+      <Product_Showcase title={"Featured Items"} isSlide={true} />
+      {/* <CountdownSlider /> */}
     </>
   )
 }

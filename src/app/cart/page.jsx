@@ -27,11 +27,11 @@ const CartPage = () => {
 
   const handleApplyCoupon = () => {
     if (!coupon.trim()) {
-      alert("Please enter a valid coupon code.");
+      toast.error("Please enter a valid coupon code.");
       return;
     }
     // Optional: apply coupon logic here
-    alert(`Applied coupon: ${coupon}`);
+    toast.success(`Applied coupon: ${coupon}`);
   };
 
   const subtotal = cartItems.reduce(
@@ -70,14 +70,14 @@ const CartPage = () => {
                       className="w-16 h-16 object-cover"
                     />
                   </td>
-                  <td className="p-3">{item.name}</td>
-                  <td className="p-3">${item.price}</td>
-                  <td className="p-3">{item.quantity}</td>
-                  <td className="p-3">${item.price * item.quantity}</td>
-                  <td className="p-3">
+                  <td className="p-3 text-lg text-gray-700">{item.name}</td>
+                  <td className="p-3 text-lg text-gray-700">${item.price}</td>
+                  <td className="p-3 text-lg text-gray-700">{item.quantity}</td>
+                  <td className="p-3 text-lg text-gray-700">${item.price * item.quantity}</td>
+                  <td className="p-3 text-lg text-gray-700">
                     <button
                       onClick={() => handleRemove(item.id)}
-                      className="text-[var(--main-color)] hover:[var(--main-color)]"
+                      className="text-[var(--main-color)] hover:[var(--main-color)] p-2 bg-gray-50 rounded-full border"
                     >
                       <X />
                     </button>
@@ -96,44 +96,47 @@ const CartPage = () => {
         </div>
 
         {/* Coupon Input */}
-        <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
+        <div className="mt-6 flex flex-col sm:flex-row items-center gap-5 justify-between ">
+          <div className="flex items-center">
           <input
             type="text"
             value={coupon}
             onChange={(e) => setCoupon(e.target.value)}
             placeholder="Enter coupon code"
-            className="w-full sm:w-auto flex-1 px-4 py-2 border rounded text-black"
+            className="w-full sm:w-auto flex-1 px-4 py-2 border rounded-s-full text-black"
           />
           <button
             onClick={handleApplyCoupon}
-            className="bg-[var(--main-color)] hover:[var(--main-color)] text-white px-6 py-2 rounded"
+            className="bg-[var(--main-color)] hover:[var(--main-color)] text-white px-6 py-2 rounded-r-full"
           >
             Apply
           </button>
+          </div>
+          <button className="bg-[var(--main-color)] px-4 py-2 rounded-lg text-white cursor-pointer" onClick={()=> router.back()}>Back to Shopping</button>
         </div>
       </div>
 
       {/* Right: Cart Summary */}
-      <div className="w-full lg:w-[30%] bg-gray-100 p-6 rounded-md shadow-md text-black">
+      <div className="w-full lg:w-[30%] bg-gray-50 p-6 rounded-md shadow-md text-black">
         <h3 className="text-xl font-semibold mb-4">Cart Summary</h3>
 
-        <div className="flex justify-between mb-2">
+        <div className="flex justify-between mb-2 text-lg text-gray-700">
           <span>Sub Total:</span>
           <span>${subtotal.toFixed(2)}</span>
         </div>
-        <div className="flex justify-between mb-2">
+        <div className="flex justify-between mb-2 text-lg text-gray-700">
           <span>Discount:</span>
           <span>${discount.toFixed(2)}</span>
         </div>
-        <div className="flex justify-between mb-2">
+        <div className="flex justify-between mb-2 text-lg text-gray-700">
           <span>Shipping:</span>
           <span>{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</span>
         </div>
-        <div className="flex justify-between mb-4">
+        <div className="flex justify-between mb-4 text-lg text-gray-700">
           <span>Taxes:</span>
           <span>${taxes.toFixed(2)}</span>
         </div>
-        <div className="flex justify-between font-bold text-lg border-t pt-3">
+        <div className="flex justify-between font-bold text-lg border-t pt-3  text-gray-700">
           <span>Total:</span>
           <span>${total.toFixed(2)}</span>
         </div>

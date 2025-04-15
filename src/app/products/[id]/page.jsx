@@ -1,10 +1,18 @@
 "use client";
-import { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { StarIcon, Heart, ShoppingCart } from "lucide-react";
 import Product from "@/components/product/Product";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCart } from "@/context/CartContext";
+import { Heart, ShoppingCart } from "lucide-react";
+import { useState } from "react";
 import toast from "react-hot-toast";
+import { FaStar } from "react-icons/fa";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const ProductDetailsPage = () => {
   const [selectedImage, setSelectedImage] = useState(
@@ -36,12 +44,12 @@ const ProductDetailsPage = () => {
     ],
   };
   const handleCart = () => {
-    console.log("triggered")
+    console.log("triggered");
     addToCart(product);
     toast.success("Product added successfully!");
   };
   return (
-    <div className="max-w-screen-xl mx-auto p-4">
+    <div className="max-w-screen-xl mx-auto px-4 py-8">
       {/* Top Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Image Section */}
@@ -72,75 +80,85 @@ const ProductDetailsPage = () => {
           <div className="flex items-center">
             <p className="flex items-center gap-2">
               {[1, 1, 1, 1].map((_, index) => (
-                <StarIcon key={index} className="text-black" />
+                <FaStar
+                  key={index}
+                  className="text-xl text-[var(--main-color)]"
+                />
               ))}
             </p>
-            <p className="text-lg">(4 Customer Reviews)</p>
+            <p className="text-lg"> (4 Customer Reviews)</p>
           </div>
-          <p className="text-gray-600">
-            Short description of the product goes here.
+          <div className="flex items-center gap-3">
+            <p className="text-2xl font-bold text-[var(--main-color)]">
+              $99.99
+            </p>
+            <p className="text-red-500 font-bold">30% off</p>
+          </div>
+          <p className="text-gray-600 text-lg">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem nobis
+            sequi provident consequuntur esse, quam voluptates eaque magnam
+            voluptate ipsa?
           </p>
-          <p className="text-xl font-bold">$99.99</p>
+          <div className="flex items-center gap-4">
+            <div className="flex flex-col text-xl gap-4 items-center">
+              <label>Quantity:</label>
+              <input
+                type="number"
+                defaultValue={1}
+                className="w-16 border px-2 py-1 rounded-md"
+              />
+            </div>
 
-          <div className="flex gap-4 items-center">
-            <label>Quantity:</label>
-            <input
-              type="number"
-              defaultValue={1}
-              className="w-16 border px-2 py-1 rounded-md"
-            />
+            <div className="flex flex-col text-xl gap-4 items-center">
+              <label>Size:</label>
+              <select className="border px-2 py-1 rounded-md">
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+              </select>
+            </div>
+
+            <div className="flex flex-col text-xl gap-4 items-center">
+              <label>Color:</label>
+              <select className="border px-2 py-1 rounded-md">
+                <option>Red</option>
+                <option>Blue</option>
+                <option>Green</option>
+                <option>Black</option>
+              </select>
+            </div>
           </div>
-
-          <div className="flex gap-4 items-center">
-            <label>Size:</label>
-            <select className="border px-2 py-1 rounded-md">
-              <option>S</option>
-              <option>M</option>
-              <option>L</option>
-              <option>XL</option>
-            </select>
-          </div>
-
-          <div className="flex gap-4 items-center">
-            <label>Color:</label>
-            <select className="border px-2 py-1 rounded-md">
-              <option>Red</option>
-              <option>Blue</option>
-              <option>Green</option>
-              <option>Black</option>
-            </select>
-          </div>
-
           {/* Additional Info */}
           <div className="space-y-2">
-            <p>
+            <p className="text-gray-700">
               <strong>Stock:</strong> Available
             </p>
-            <p>
+            <p className="text-gray-700">
               <strong>SKU:</strong> 656TYTR
             </p>
-            <p>
+            <p className="text-gray-700">
               <strong>Category:</strong> Medicine
             </p>
-            <p>
+            <p className="text-gray-700">
               <strong>Brand:</strong> Novak
             </p>
-            <p>
+            <p className="text-gray-700">
               <strong>Tags:</strong> Medicine, Healthcare, Modern, Shop
             </p>
           </div>
 
           {/* Buttons */}
           <div className="flex gap-4 mt-4">
-            <button className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-xl hover:bg-red-600 transition">
-              <Heart className="w-5 h-5" />
-            </button>
             <button
               className="flex items-center gap-2 px-4 py-2 bg-[var(--main-color)] text-white rounded-xl hover:bg-gray-800 transition cursor-pointer"
               onClick={handleCart}
             >
               <ShoppingCart className="w-5 h-5" />
               Add to Cart
+            </button>{" "}
+            <button className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-xl hover:bg-red-600 transition">
+              <Heart className="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -149,22 +167,22 @@ const ProductDetailsPage = () => {
       {/* Tabs Section */}
       <div className="mt-12">
         <Tabs defaultValue="details">
-          <TabsList className="flex w-full justify-between gap-12 border-b">
+          <TabsList className="flex w-1/2 justify-between gap-12 border-b-2 rounded-none border-[var(--main-color)] bg-transparent">
             <TabsTrigger
               value="details"
-              className="px-4 py-4 font-medium text-black hover:border-b-2 hover:border-black transition"
+              className="px-4 py-4 font-medium text-black  transition"
             >
               Product Details
             </TabsTrigger>
             <TabsTrigger
               value="additional"
-              className="px-4 py-4 font-medium text-black hover:border-b-2 hover:border-black transition"
+              className="px-4 py-4 font-medium text-black  transition"
             >
               Additional Info
             </TabsTrigger>
             <TabsTrigger
               value="reviews"
-              className="px-4 py-4 font-medium text-black hover:border-b-2 hover:border-black transition"
+              className="px-4 py-4 font-medium text-black  transition"
             >
               Reviews
             </TabsTrigger>
@@ -210,10 +228,27 @@ const ProductDetailsPage = () => {
       {/* Related Products */}
       <div className="mt-12">
         <h2 className="text-xl font-semibold mb-4">Related Products</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {[1, 2, 3, 4].map((item) => (
-            <Product />
-          ))}
+        <div>
+          <Swiper
+            modules={[ Navigation, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={1}
+           
+            navigation={false}
+            autoplay={{ delay: 2000, disableOnInteraction: false }}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+              1280: { slidesPerView: 4 },
+            }}
+          >
+            {[1, 2, 3, 4,3,4,].map((item, index) => (
+              <SwiperSlide key={index}>
+                <Product />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </div>
