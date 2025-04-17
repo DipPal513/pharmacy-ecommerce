@@ -79,12 +79,7 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: @apply bg-gray-50;
-    --foreground: #ededed;
-  }
-}
+
 
 .maincolor {
   color: var(--main-color);
