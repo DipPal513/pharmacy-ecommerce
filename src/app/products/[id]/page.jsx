@@ -5,17 +5,24 @@ import { useCart } from "@/context/CartContext";
 import { Heart, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaViacoin } from "react-icons/fa";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import {FcLike} from "react-icons/fc"
+import {MdOutlineShoppingCart } from "react-icons/md";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 const ProductDetailsPage = () => {
-  const [quantity,setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(
     "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dGVjaHxlbnwwfHwwfHx8MA%3D%3D"
   );
@@ -100,20 +107,20 @@ const ProductDetailsPage = () => {
             sequi provident consequuntur esse, quam voluptates eaque magnam
             voluptate ipsa?
           </p>
-            {/* Buttons */}
-            <div className="flex items-center gap-4">
+          {/* Buttons */}
+          <div className="flex items-center gap-4">
             <div className="flex flex-col text-xl gap-4 items-center">
               <label>Quantity:</label>
               <div className="flex items-center gap-2">
                 <button
-                  className="px-2 py-1 border rounded-md"
+                  className="px-2 py-1 border rounded-md cursor-pointer hover-bg-[var(--main-color)] transition duration-200"
                   onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
                 >
                   -
                 </button>
                 <span className="px-4">{quantity}</span>
                 <button
-                  className="px-2 py-1 border rounded-md"
+                  className="px-2 py-1 border rounded-md cursor-pointer hover-bg-[var(--main-color)] transition duration-200"
                   onClick={() => setQuantity((prev) => prev + 1)}
                 >
                   +
@@ -169,8 +176,10 @@ const ProductDetailsPage = () => {
               <strong>Tags:</strong> Medicine, Healthcare, Modern, Shop
             </p>
           </div>
-
-        
+          <div className="flex items-center gap-5">
+            
+            <button className="bg-[var(--main-color)] px-4 py-2 rounded-lg flex items-center gap-4 text-white cursor-pointer transition duration-200 hover:bg-red-500" onClick={handleCart}><span>Add To Cart</span><MdOutlineShoppingCart /></button>
+          </div>
         </div>
       </div>
 
@@ -240,10 +249,9 @@ const ProductDetailsPage = () => {
         <h2 className="text-xl font-semibold mb-4">Related Products</h2>
         <div>
           <Swiper
-            modules={[ Navigation, Autoplay]}
+            modules={[Navigation, Autoplay]}
             spaceBetween={30}
             slidesPerView={1}
-           
             navigation={false}
             autoplay={{ delay: 2000, disableOnInteraction: false }}
             breakpoints={{
@@ -253,7 +261,7 @@ const ProductDetailsPage = () => {
               1280: { slidesPerView: 4 },
             }}
           >
-            {[1, 2, 3, 4,3,4,].map((item, index) => (
+            {[1, 2, 3, 4, 3, 4].map((item, index) => (
               <SwiperSlide key={index}>
                 <Product />
               </SwiperSlide>

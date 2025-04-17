@@ -1,17 +1,23 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { ChevronDown, ChevronUp, ArrowLeft, ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import Link from "next/link"
+import { useState } from "react";
+import { ChevronDown, ChevronUp, ArrowLeft, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import Link from "next/link";
 
 export default function CheckoutPage() {
-  const [billingExpanded, setBillingExpanded] = useState(true)
-  const [shippingExpanded, setShippingExpanded] = useState(false)
-  const [paymentExpanded, setPaymentExpanded] = useState(false)
+  const [billingExpanded, setBillingExpanded] = useState(true);
+  const [shippingExpanded, setShippingExpanded] = useState(false);
+  const [paymentExpanded, setPaymentExpanded] = useState(false);
 
   return (
     <div className="container mx-auto py-8 px-4">
@@ -23,9 +29,16 @@ export default function CheckoutPage() {
               className="flex justify-between items-center p-4 bg-white cursor-pointer"
               onClick={() => setBillingExpanded(!billingExpanded)}
             >
-              <h2 className="text-lg font-medium text-teal-600">Your Billing Address</h2>
+              <h2 className="text-lg font-medium text-teal-600">
+                Your Billing Address
+              </h2>
+
               <button className="text-gray-500">
-                {billingExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                {billingExpanded ? (
+                  <ChevronUp size={20} />
+                ) : (
+                  <ChevronDown size={20} />
+                )}
               </button>
             </div>
 
@@ -33,49 +46,74 @@ export default function CheckoutPage() {
               <div className="p-6 border-t">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="firstName"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       First Name
                     </label>
                     <Input id="firstName" placeholder="First Name" />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="lastName"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Last Name
                     </label>
                     <Input id="lastName" placeholder="Last Name" />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Email
                     </label>
-                    <Input id="email" type="email" placeholder="Email Address" />
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="Email Address"
+                    />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Phone
                     </label>
                     <Input id="phone" placeholder="Phone Number" />
                   </div>
 
                   <div className="space-y-2 md:col-span-2">
-                    <label htmlFor="addressLine1" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="addressLine1"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Address Line 1
                     </label>
                     <Input id="addressLine1" placeholder="Address Line 1" />
                   </div>
 
                   <div className="space-y-2 md:col-span-2">
-                    <label htmlFor="addressLine2" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="addressLine2"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Address Line 2
                     </label>
                     <Input id="addressLine2" placeholder="Address Line 2" />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="country" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="country"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Country
                     </label>
                     <Select>
@@ -92,49 +130,73 @@ export default function CheckoutPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="city"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       City
                     </label>
                     <Input id="city" placeholder="City" />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="postCode" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="postCode"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Post Code
                     </label>
                     <Input id="postCode" placeholder="Post Code" />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="state" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="state"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       State
                     </label>
                     <Input id="state" placeholder="State" />
                   </div>
 
                   <div className="space-y-2 md:col-span-2">
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Your Message For Order
                     </label>
-                    <Textarea id="message" placeholder="Your Message" rows={4} />
+                    <Textarea
+                      id="message"
+                      placeholder="Your Message"
+                      rows={4}
+                    />
                   </div>
                 </div>
 
                 <div className="flex flex-wrap gap-4 mt-6">
-                  <Button variant="outline" className="flex items-center gap-2">
-                    <ArrowLeft size={16} />
-                    Back to Cart
-                  </Button>
                   <Button
+                    variant="outline"
                     className="flex items-center gap-2"
                     onClick={() => {
-                      setShippingExpanded(true)
-                      setBillingExpanded(false)
+                      setBillingExpanded(true);
+                      setShippingExpanded(false);
                     }}
                   >
-                    Next Step
-                    <ArrowRight size={16} />
+                    <ArrowLeft size={16} />
+                    Back
                   </Button>
+
+                  <button
+                    className="bg-[var(--main-color)] px-4 py-2 rounded-lg text-white cursor-pointer transition duration-200 hover:bg-red-500 flex items-center gap-2"
+                    onClick={() => {
+                      setShippingExpanded(true);
+                      setBillingExpanded(false);
+                    }}
+                  >
+                    <ArrowLeft size={16} />
+                    Next Step{" "}
+                  </button>
                 </div>
               </div>
             )}
@@ -146,9 +208,15 @@ export default function CheckoutPage() {
               className="flex justify-between items-center p-4 bg-white cursor-pointer"
               onClick={() => setShippingExpanded(!shippingExpanded)}
             >
-              <h2 className="text-lg font-medium text-teal-600">Your Shipping Address</h2>
+              <h2 className="text-lg font-medium text-teal-600">
+                Your Shipping Address
+              </h2>
               <button className="text-gray-500">
-                {shippingExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                {shippingExpanded ? (
+                  <ChevronUp size={20} />
+                ) : (
+                  <ChevronDown size={20} />
+                )}
               </button>
             </div>
 
@@ -160,42 +228,60 @@ export default function CheckoutPage() {
                     type="checkbox"
                     className="h-4 w-4 text-teal-600 border-gray-300 rounded"
                   />
-                  <label htmlFor="same-as-billing" className="ml-2 block text-sm text-gray-700">
+                  <label
+                    htmlFor="same-as-billing"
+                    className="ml-2 block text-sm text-gray-700"
+                  >
                     Same as billing address
                   </label>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label htmlFor="shipFirstName" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="shipFirstName"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       First Name
                     </label>
                     <Input id="shipFirstName" placeholder="First Name" />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="shipLastName" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="shipLastName"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Last Name
                     </label>
                     <Input id="shipLastName" placeholder="Last Name" />
                   </div>
 
                   <div className="space-y-2 md:col-span-2">
-                    <label htmlFor="shipAddressLine1" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="shipAddressLine1"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Address Line 1
                     </label>
                     <Input id="shipAddressLine1" placeholder="Address Line 1" />
                   </div>
 
                   <div className="space-y-2 md:col-span-2">
-                    <label htmlFor="shipAddressLine2" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="shipAddressLine2"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Address Line 2
                     </label>
                     <Input id="shipAddressLine2" placeholder="Address Line 2" />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="shipCountry" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="shipCountry"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Country
                     </label>
                     <Select>
@@ -212,21 +298,30 @@ export default function CheckoutPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="shipCity" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="shipCity"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       City
                     </label>
                     <Input id="shipCity" placeholder="City" />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="shipPostCode" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="shipPostCode"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Post Code
                     </label>
                     <Input id="shipPostCode" placeholder="Post Code" />
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="shipState" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="shipState"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       State
                     </label>
                     <Input id="shipState" placeholder="State" />
@@ -238,23 +333,23 @@ export default function CheckoutPage() {
                     variant="outline"
                     className="flex items-center gap-2"
                     onClick={() => {
-                      setBillingExpanded(true)
-                      setShippingExpanded(false)
+                      setBillingExpanded(true);
+                      setShippingExpanded(false);
                     }}
                   >
                     <ArrowLeft size={16} />
                     Back
                   </Button>
-                  <Button
-                    className="flex items-center gap-2"
+                  <button
+                    className="bg-[var(--main-color)] px-4 py-2 rounded-lg text-white cursor-pointer transition duration-200 hover:bg-red-500 flex items-center gap-2"
                     onClick={() => {
-                      setPaymentExpanded(true)
-                      setShippingExpanded(false)
+                      setShippingExpanded(true);
+                      setBillingExpanded(false);
                     }}
                   >
-                    Next Step
-                    <ArrowRight size={16} />
-                  </Button>
+                    <ArrowLeft size={16} />
+                    Next Step{" "}
+                  </button>
                 </div>
               </div>
             )}
@@ -266,9 +361,15 @@ export default function CheckoutPage() {
               className="flex justify-between items-center p-4 bg-white cursor-pointer"
               onClick={() => setPaymentExpanded(!paymentExpanded)}
             >
-              <h2 className="text-lg font-medium text-teal-600">Your Payment Info</h2>
+              <h2 className="text-lg font-medium text-teal-600">
+                Your Payment Info
+              </h2>
               <button className="text-gray-500">
-                {paymentExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                {paymentExpanded ? (
+                  <ChevronUp size={20} />
+                ) : (
+                  <ChevronDown size={20} />
+                )}
               </button>
             </div>
 
@@ -284,7 +385,10 @@ export default function CheckoutPage() {
                         className="h-4 w-4 text-teal-600 border-gray-300"
                         defaultChecked
                       />
-                      <label htmlFor="credit-card" className="ml-2 block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="credit-card"
+                        className="ml-2 block text-sm font-medium text-gray-700"
+                      >
                         Credit Card
                       </label>
                     </div>
@@ -295,7 +399,10 @@ export default function CheckoutPage() {
                         type="radio"
                         className="h-4 w-4 text-teal-600 border-gray-300"
                       />
-                      <label htmlFor="paypal" className="ml-2 block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="paypal"
+                        className="ml-2 block text-sm font-medium text-gray-700"
+                      >
                         PayPal
                       </label>
                     </div>
@@ -306,7 +413,10 @@ export default function CheckoutPage() {
                         type="radio"
                         className="h-4 w-4 text-teal-600 border-gray-300"
                       />
-                      <label htmlFor="bank-transfer" className="ml-2 block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="bank-transfer"
+                        className="ml-2 block text-sm font-medium text-gray-700"
+                      >
                         Bank Transfer
                       </label>
                     </div>
@@ -314,28 +424,43 @@ export default function CheckoutPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2 md:col-span-2">
-                      <label htmlFor="cardName" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="cardName"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         Name on Card
                       </label>
                       <Input id="cardName" placeholder="Name on Card" />
                     </div>
 
                     <div className="space-y-2 md:col-span-2">
-                      <label htmlFor="cardNumber" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="cardNumber"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         Card Number
                       </label>
-                      <Input id="cardNumber" placeholder="XXXX XXXX XXXX XXXX" />
+                      <Input
+                        id="cardNumber"
+                        placeholder="XXXX XXXX XXXX XXXX"
+                      />
                     </div>
 
                     <div className="space-y-2">
-                      <label htmlFor="expiryDate" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="expiryDate"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         Expiry Date
                       </label>
                       <Input id="expiryDate" placeholder="MM/YY" />
                     </div>
 
                     <div className="space-y-2">
-                      <label htmlFor="cvv" className="block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="cvv"
+                        className="block text-sm font-medium text-gray-700"
+                      >
                         CVV
                       </label>
                       <Input id="cvv" placeholder="XXX" />
@@ -347,17 +472,16 @@ export default function CheckoutPage() {
                       variant="outline"
                       className="flex items-center gap-2"
                       onClick={() => {
-                        setShippingExpanded(true)
-                        setPaymentExpanded(false)
+                        setShippingExpanded(true);
+                        setPaymentExpanded(false);
                       }}
                     >
                       <ArrowLeft size={16} />
                       Back
                     </Button>
-                    <Button className="flex items-center gap-2">
-                      Complete Order
-                      <ArrowRight size={16} />
-                    </Button>
+                    <button className="bg-[var(--main-color)] px-4 py-2 rounded-lg text-white cursor-pointer transition duration-200 hover:bg-red-500 flex items-center gap-2">
+                      Next Step <ArrowRight size={16} />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -399,7 +523,10 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            <Link href={"/checkout-complete"} className="w-full mt-6 bg-teal-600 hover:bg-teal-700 py-2 text-white flex items-center justify-center gap-2" >
+            <Link
+              href={"/checkout-complete"}
+              className="w-full mt-6 bg-teal-600 hover:bg-red-500 py-2 text-white flex items-center justify-center gap-2"
+            >
               Checkout Now
               <ArrowRight size={16} />
             </Link>
@@ -407,5 +534,5 @@ export default function CheckoutPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

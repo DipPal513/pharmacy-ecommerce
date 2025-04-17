@@ -1,13 +1,13 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import Image from "next/image"
-import { Camera, Upload } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Image from "next/image";
+import { Camera, Upload } from "lucide-react";
 
 export default function ProfilePage() {
   return (
-    (<div>
+    <div>
       <h1 className="text-2xl font-bold mb-6">My Profile</h1>
       <Tabs defaultValue="personal" className="w-full">
         <TabsList className="mb-6">
@@ -15,21 +15,23 @@ export default function ProfilePage() {
           <TabsTrigger value="password">Change Password</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="personal" className="bg-white p-6 rounded-lg shadow-sm">
+        <TabsContent
+          value="personal"
+          className="bg-white p-6 rounded-lg shadow-sm"
+        >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="col-span-1 flex flex-col items-center">
               <div className="relative mb-4">
-                <div
-                  className="w-32 h-32 rounded-full overflow-hidden border-4 border-teal-100">
+                <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-teal-100">
                   <Image
                     src="/placeholder.svg?height=128&width=128"
                     alt="Profile"
                     width={128}
                     height={128}
-                    className="object-cover" />
+                    className="object-cover"
+                  />
                 </div>
-                <button
-                  className="absolute bottom-0 right-0 bg-teal-500 text-white p-2 rounded-full">
+                <button className="absolute bottom-0 right-0 bg-teal-500 text-white p-2 rounded-full">
                   <Camera size={18} />
                 </button>
               </div>
@@ -57,12 +59,20 @@ export default function ProfilePage() {
 
                 <div className="space-y-2">
                   <Label htmlFor="email">Email Address</Label>
-                  <Input id="email" type="email" defaultValue="antoni@example.com" />
+                  <Input
+                    id="email"
+                    type="email"
+                    defaultValue="antoni@example.com"
+                  />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="phone">Phone Number</Label>
-                  <Input id="phone" type="tel" defaultValue="+1 (555) 123-4567" />
+                  <Input
+                    id="phone"
+                    type="tel"
+                    defaultValue="+1 (555) 123-4567"
+                  />
                 </div>
 
                 <div className="space-y-2 md:col-span-2">
@@ -71,33 +81,51 @@ export default function ProfilePage() {
                     id="bio"
                     rows={4}
                     className="w-full border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    defaultValue="I'm a software developer with a passion for creating beautiful user interfaces."></textarea>
+                    defaultValue="I'm a software developer with a passion for creating beautiful user interfaces."
+                  ></textarea>
                 </div>
 
                 <div className="md:col-span-2 flex justify-end gap-4 mt-4">
                   <Button variant="outline">Cancel</Button>
-                  <Button>Save Changes</Button>
+                  <button className="bg-[var(--main-color)] px-4 py-2 rounded-lg text-white cursor-pointer transition duration-200 hover:bg-red-500 flex items-center gap-2">
+                    Save Changes
+                  </button>
                 </div>
               </form>
             </div>
           </div>
         </TabsContent>
 
-        <TabsContent value="password" className="bg-white p-6 rounded-lg shadow-sm">
+        <TabsContent
+          value="password"
+          className="bg-white p-6 rounded-lg shadow-sm"
+        >
           <form className="max-w-md mx-auto space-y-6">
             <div className="space-y-2">
               <Label htmlFor="currentPassword">Current Password</Label>
-              <Input id="currentPassword" type="password" className={"focus:ring-2 focus:ring-teal-500"} />
+              <Input
+                id="currentPassword"
+                type="password"
+                className={"focus:ring-2 focus:ring-teal-500"}
+              />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="newPassword">New Password</Label>
-              <Input id="newPassword" type="password" className={"focus:ring-2 focus:ring-teal-500"} />
+              <Input
+                id="newPassword"
+                type="password"
+                className={"focus:ring-2 focus:ring-teal-500"}
+              />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="confirmPassword">Confirm New Password</Label>
-              <Input id="confirmPassword" type="password" className={"focus:ring-2 focus:ring-teal-500"} />
+              <Input
+                id="confirmPassword"
+                type="password"
+                className={"focus:ring-2 focus:ring-teal-500"}
+              />
             </div>
 
             <div className="flex justify-end gap-4 mt-6">
@@ -107,6 +135,6 @@ export default function ProfilePage() {
           </form>
         </TabsContent>
       </Tabs>
-    </div>)
+    </div>
   );
 }

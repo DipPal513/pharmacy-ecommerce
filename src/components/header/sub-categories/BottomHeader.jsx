@@ -85,7 +85,7 @@ export default function BottomHeader() {
           </button>
 
           {/* Sign In Button */}
-          <div className="flex items-center space-x-2 cursor-pointer bg-gray-100 px-2 py-2 rounded-full text-[var(--main-color)]">
+          <div className="hidden sm:flex items-center space-x-2 cursor-pointer bg-gray-100 px-2 py-2 rounded-full text-[var(--main-color)]">
             <FaUser className="" />
           </div>
 
@@ -106,7 +106,7 @@ export default function BottomHeader() {
           </Link>
 
           {/* Menu Icon (Hamburger menu for mobile) */}
-          <div className="md:hidden flex items-center space-x-2 cursor-pointer">
+          <div className="sm:hidden flex items-center space-x-2 cursor-pointer">
             <NestedDropdown isGray={false} />
           </div>
         </div>

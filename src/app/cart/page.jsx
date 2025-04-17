@@ -72,7 +72,21 @@ const CartPage = () => {
                   </td>
                   <td className="p-3 text-lg text-gray-700">{item.name}</td>
                   <td className="p-3 text-lg text-gray-700">${item.price}</td>
-                  <td className="p-3 text-lg text-gray-700">{item.quantity}</td>
+                  <td className="p-3 text-lg text-gray-700">  <div className="flex items-center gap-2">
+                <button
+                  className="px-2 py-1 border rounded-md cursor-pointer hover-bg-[var(--main-color)] transition duration-200"
+                  onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
+                >
+                  -
+                </button>
+                <span className="px-4">{item.quantity}</span>
+                <button
+                  className="px-2 py-1 border rounded-md cursor-pointer hover-bg-[var(--main-color)] transition duration-200"
+                  onClick={() => setQuantity((prev) => prev + 1)}
+                >
+                  +
+                </button>
+              </div></td>
                   <td className="p-3 text-lg text-gray-700">${item.price * item.quantity}</td>
                   <td className="p-3 text-lg text-gray-700">
                     <button

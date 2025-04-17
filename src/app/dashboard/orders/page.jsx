@@ -11,7 +11,7 @@ export default function OrderListPage() {
         {/* Filters */}
         <div className="flex flex-col md:flex-row gap-4 mb-6">
           <div className="flex-1 flex gap-2">
-            <Input placeholder="Search orders..." className="max-w-xs" />
+            <Input placeholder="Search orders..." className="max-w-xs focus:ring-2 focus:ring-teal-500" />
             <Button size="icon" variant="outline">
               <Search size={18} />
             </Button>
