@@ -47,33 +47,33 @@ export default function BottomHeader() {
         <div className="hidden sm:flex">
           <NestedDropdown />
         </div>
-        {/* Middle: Category Dropdown and Search Bar (Visible on larger screens) */}
-        <div className="hidden md:flex items-center w-full md:w-1/3  relative border-[var(--main-color)] border-2 rounded-full text-xl">
-          {/* Category Dropdown */}
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="py-[8.9px] px-4 border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 w-full focus:ring-blue-500 border-r-0"
-          >
-            {categories.map((category, index) => (
-              <option key={index} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
+       
+          <div className="hidden md:flex items-center w-full md:w-1/3 relative border-[var(--main-color)] border-2 rounded-full text-xl">
+            {/* Category Dropdown */}
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="py-[8.9px] px-4 border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-[var(--main-color)] border-r-0"
+            >
+              {categories.map((category, index) => (
+                <option key={index} value={category}>
+            {category}
+                </option>
+              ))}
+            </select>
 
-          {/* Search Input */}
-          <div className="flex items-center border border-gray-300 rounded-r-full w-full">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="py-2 px-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <FaSearch className="text-gray-500 text-xl mr-3" />
+            {/* Search Input */}
+            <div className="flex items-center border border-gray-300 rounded-r-full w-3/4">
+              <input
+                type="text"
+                placeholder="Search..."
+                className="py-2 px-2 w-full focus:outline-none  "
+              />
+              <FaSearch className="text-gray-500 text-2xl mr-3 hover:text-[var(--main-color)] cursor-pointer" />
+            </div>
           </div>
-        </div>
 
-        {/* Right: Sign In, Wishlist, and Cart Icons with Text */}
+          {/* Right: Sign In, Wishlist, and Cart Icons with Text */}
         <div className="flex items-center text-2xl space-x-5">
           {/* Search Button (Visible on mobile) */}
           <button
@@ -97,7 +97,7 @@ export default function BottomHeader() {
           {/* Cart Icon and Text */}
           <Link
             href={"/cart"}
-            className="flex items-center space-x-2 cursor-pointer  "
+            className="flex hover:text-red-500 transition duration-200 items-center space-x-2 cursor-pointer  "
           >
             <FaShoppingCart className=" text-[var(--main-color)]" />
             <sup className="text-sm bg-gray-400 px-2 py-1 rounded-full text-white">
@@ -121,7 +121,7 @@ export default function BottomHeader() {
             <input
               type="text"
               placeholder="Search..."
-              className="py-2 px-4 w-4/5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="py-2 px-4 w-4/5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--main-color)]"
             />
             <button
               className="py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"

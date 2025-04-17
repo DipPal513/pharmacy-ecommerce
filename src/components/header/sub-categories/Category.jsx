@@ -1,11 +1,11 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
-import { ChevronRight, Layers, X } from "lucide-react"
+import { ChevronRight, Layers } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { FaBars } from "react-icons/fa"
 
-export default function NestedDropdown({isGray=false}) {
+export default function NestedDropdown({ isGray = false }) {
   const [isOpen, setIsOpen] = useState(false)
   const [activeItem, setActiveItem] = useState(null)
   const [activeSubItem, setActiveSubItem] = useState(null)
@@ -99,6 +99,7 @@ export default function NestedDropdown({isGray=false}) {
       clearTimeout(closeTimeoutRef.current)
       closeTimeoutRef.current = null
     }
+    setIsOpen(true)
   }
 
   const handleMouseLeave = () => {
@@ -118,7 +119,11 @@ export default function NestedDropdown({isGray=false}) {
   }, [])
 
   return (
-    <div className={`${isGray && "bg-gray-100"}`}>
+    <div
+      className={`${isGray && "bg-gray-100"}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="max-w-screen-xl mx-auto relative py-3">
         {/* Main Category Button */}
         <button
@@ -127,69 +132,18 @@ export default function NestedDropdown({isGray=false}) {
             "flex items-center gap-2 px-4 py-3 rounded transition-all duration-200 border",
             isOpen ? "bg-primary text-primary-foreground shadow-lg scale-105" : "bg-background hover:bg-muted",
           )}
-          onClick={() => setIsOpen(!isOpen)}
         >
           <FaBars className={cn("h-5 w-5", isOpen ? "animate-pulse" : "")} />
           <span className="font-medium hidden sm:flex">Categories</span>
         </button>
 
-        {/* Mobile Dropdown */}
-        {isMobile && isOpen && (
-          <div className="fixed inset-0 bg-white z-50 overflow-y-auto">
-            <div className="flex justify-between items-center p-4 border-b">
-              <h2 className="text-lg font-medium">Categories</h2>
-              <button onClick={() => setIsOpen(false)}>
-                <X className="h-6 w-6" />
-              </button>
-            </div>
-            <div className="p-4">
-              <ul>
-                {mainItems.map((item) => (
-                  <li key={item.id} className="py-2 border-b">
-                    <button
-                      className="w-full text-left"
-                      onClick={() => setActiveItem(activeItem === item.id ? null : item.id)}
-                    >
-                      {item.label}
-                    </button>
-                    {activeItem === item.id && subItems[item.id] && (
-                      <ul className="pl-4 mt-2">
-                        {subItems[item.id].map((subItem) => (
-                          <li key={subItem.id} className="py-1">
-                            <button
-                              className="w-full text-left"
-                              onClick={() => setActiveSubItem(activeSubItem === subItem.id ? null : subItem.id)}
-                            >
-                              {subItem.label}
-                            </button>
-                            {activeSubItem === subItem.id && tertiaryItems[subItem.id] && (
-                              <ul className="pl-4 mt-1">
-                                {tertiaryItems[subItem.id].map((tertiaryItem, index) => (
-                                  <li key={index} className="py-1">
-                                    {tertiaryItem}
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        )}
-
         {/* Desktop Dropdown */}
         {!isMobile && isOpen && (
-          <div onMouseLeave={handleMouseLeave}>
+          <div>
             {/* First Level Dropdown */}
             <div
               ref={firstLevelRef}
-              className="absolute left-0 top-full mt-2 w-48 rounded-lg border bg-background shadow-lg z-50"
-              onMouseEnter={handleMouseEnter}
+              className="absolute left-0 top-full  w-48 rounded-lg border bg-background shadow-lg z-50"
             >
               <ul className="py-2">
                 {mainItems.map((item) => (
@@ -199,10 +153,7 @@ export default function NestedDropdown({isGray=false}) {
                       "px-4 py-2 hover:bg-muted flex justify-between items-center cursor-pointer",
                       activeItem === item.id && "bg-muted",
                     )}
-                    onMouseEnter={() => {
-                      handleMouseEnter()
-                      setActiveItem(item.id)
-                    }}
+                    onMouseEnter={() => setActiveItem(item.id)}
                   >
                     <span>{item.label}</span>
                     {subItems[item.id] && <ChevronRight className="h-4 w-4" />}
@@ -215,8 +166,7 @@ export default function NestedDropdown({isGray=false}) {
             {activeItem !== null && subItems[activeItem] && (
               <div
                 ref={secondLevelRef}
-                className="absolute left-44 top-full w-48 rounded-lg border bg-background shadow-lg z-50"
-                onMouseEnter={handleMouseEnter}
+                className="absolute left-47 top-full w-48 rounded-lg border bg-background shadow-lg z-50"
                 style={{ marginLeft: "4px" }}
               >
                 <ul className="py-2">
@@ -227,10 +177,7 @@ export default function NestedDropdown({isGray=false}) {
                         "px-4 py-2 hover:bg-muted flex justify-between items-center cursor-pointer",
                         activeSubItem === subItem.id && "bg-muted",
                       )}
-                      onMouseEnter={() => {
-                        handleMouseEnter()
-                        setActiveSubItem(subItem.id)
-                      }}
+                      onMouseEnter={() => setActiveSubItem(subItem.id)}
                     >
                       <span>{subItem.label}</span>
                       {tertiaryItems[subItem.id] && <ChevronRight className="h-4 w-4" />}
@@ -244,13 +191,12 @@ export default function NestedDropdown({isGray=false}) {
             {activeSubItem !== null && tertiaryItems[activeSubItem] && (
               <div
                 ref={thirdLevelRef}
-                className="absolute left-92 top-full w-48 rounded-lg border bg-background shadow-lg z-50"
-                onMouseEnter={handleMouseEnter}
+                className="absolute left-95 top-full w-48 rounded-lg border bg-background shadow-lg z-50"
                 style={{ marginLeft: "4px" }}
               >
                 <ul className="py-2">
                   {tertiaryItems[activeSubItem].map((tertiaryItem, index) => (
-                    <li key={index} className="px-4 py-2 hover:bg-muted cursor-pointer" onMouseEnter={handleMouseEnter}>
+                    <li key={index} className="px-4 py-2 hover:bg-muted cursor-pointer">
                       {tertiaryItem}
                     </li>
                   ))}

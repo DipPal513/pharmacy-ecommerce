@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const CheckoutPage = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div className="min-h-[80vh] bg-gray-100 flex items-center justify-center">
       <div className="bg-white rounded-2xl shadow-xl max-w-lg w-full p-6 text-center">
         <div className="flex justify-center">
           <div className="bg-white rounded-full p-2 -mt-14 shadow-md">

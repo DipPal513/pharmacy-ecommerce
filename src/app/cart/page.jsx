@@ -77,7 +77,7 @@ const CartPage = () => {
                   <td className="p-3 text-lg text-gray-700">
                     <button
                       onClick={() => handleRemove(item.id)}
-                      className="text-[var(--main-color)] hover:[var(--main-color)] p-2 bg-gray-50 rounded-full border"
+                      className="text-[var(--main-color)] hover:text-red-500 hover:border-red-500 p-2 bg-gray-50 rounded-full border cursor-pointer"
                     >
                       <X />
                     </button>
@@ -107,12 +107,12 @@ const CartPage = () => {
           />
           <button
             onClick={handleApplyCoupon}
-            className="bg-[var(--main-color)] hover:[var(--main-color)] text-white px-6 py-2 rounded-r-full"
+            className="bg-[var(--main-color)] hover:bg-red-500 text-white px-6 py-2 cursor-pointer rounded-r-full transition duration-200"
           >
             Apply
           </button>
           </div>
-          <button className="bg-[var(--main-color)] px-4 py-2 rounded-lg text-white cursor-pointer" onClick={()=> router.back()}>Back to Shopping</button>
+          <button className="bg-[var(--main-color)] px-4 py-2 rounded-lg text-white cursor-pointer transition duration-200 hover:bg-red-500" onClick={()=> router.back()}>Back to Shopping</button>
         </div>
       </div>
 
@@ -151,7 +151,7 @@ const CartPage = () => {
             // Proceed to checkout logic
             toast.success("Proceeding to checkout...");
           }}
-          className="w-full mt-6 bg-[var(--main-color)] hover:bg-[#1e40af] text-white py-2 rounded cursor-pointer"
+          className="w-full mt-6 bg-[var(--main-color)] hover:bg-red-500 transition duration-200 text-white py-2 rounded cursor-pointer"
         >
           Proceed to Checkout
         </button>

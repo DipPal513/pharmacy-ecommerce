@@ -87,17 +87,17 @@ export default function ProfilePage() {
           <form className="max-w-md mx-auto space-y-6">
             <div className="space-y-2">
               <Label htmlFor="currentPassword">Current Password</Label>
-              <Input id="currentPassword" type="password" />
+              <Input id="currentPassword" type="password" className={"focus:ring-2 focus:ring-teal-500"} />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="newPassword">New Password</Label>
-              <Input id="newPassword" type="password" />
+              <Input id="newPassword" type="password" className={"focus:ring-2 focus:ring-teal-500"} />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="confirmPassword">Confirm New Password</Label>
-              <Input id="confirmPassword" type="password" />
+              <Input id="confirmPassword" type="password" className={"focus:ring-2 focus:ring-teal-500"} />
             </div>
 
             <div className="flex justify-end gap-4 mt-6">

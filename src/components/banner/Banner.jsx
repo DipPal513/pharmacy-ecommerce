@@ -90,7 +90,7 @@ const bannerSlides = [
 
                   <div className="flex flex-wrap gap-4">
                     <button
-                      className={`${slide.accentColor} text-white px-6 py-3 rounded-md font-medium flex items-center`}
+                      className={`${slide.accentColor} text-white px-6 py-3 rounded-md font-medium flex items-center transition-transform transform hover:scale-105 hover:shadow-lg cursor-pointer`}
                     >
                       Shop Now
                       <svg
@@ -108,7 +108,7 @@ const bannerSlides = [
                         ></path>
                       </svg>
                     </button>
-                    <button className="bg-white text-slate-800 px-6 py-3 rounded-md font-medium border border-slate-200 flex items-center">
+                    <button className="bg-white text-slate-800 px-6 py-3 rounded-md font-medium border border-slate-200 flex items-center transition-transform transform hover:scale-105 hover:shadow-lg cursor-pointer">
                       Learn More
                       <svg
                         className="ml-2 w-5 h-5"
@@ -144,20 +144,10 @@ const bannerSlides = [
           </SwiperSlide>
         ))}
 
-        {/* Custom navigation buttons */}
-        {/* <div className="swiper-button-prev absolute left-4 top-1/2 z-10 -translate-y-1/2 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-md cursor-pointer">
-          <ChevronLeft className="w-6 h-6 text-slate-700" />
-        </div>
-        <div className="swiper-button-next absolute right-4 top-1/2 z-10 -translate-y-1/2 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-md cursor-pointer">
-          <ChevronRight className="w-6 h-6 text-slate-700" />
-        </div> */}
-
         {/* Custom pagination */}
         <div className="swiper-pagination bottom-4"></div>
       </Swiper>
-   
-  </div>
-
+    </div>
   );
 };
 

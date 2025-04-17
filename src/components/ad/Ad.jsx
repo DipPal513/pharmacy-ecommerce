@@ -14,7 +14,7 @@ export default function Ad() {
                 <p>sanitizer</p>
             </div>
             <h3 className="mt-4 text-2xl capitalize font-semibold">hand sanitizer <br />collection</h3>
-            <button className="mt-2 uppercase font-lg font-semibold underline">shop now</button>
+            <button className="mt-2 uppercase font-lg font-semibold underline hover:text-[var(--main-color)] transition-all duration-200 cursor-pointer">shop now</button>
           </div>
         </div>
         <div className="relative">
@@ -27,7 +27,7 @@ export default function Ad() {
                 <p>sanitizer</p>
             </div>
             <h3 className="mt-4 text-2xl capitalize font-semibold">hand sanitizer <br />collection</h3>
-            <button className="mt-2 uppercase font-lg font-semibold underline">shop now</button>
+            <button className="mt-2 uppercase font-lg font-semibold underline hover:text-[var(--main-color)] transition-all duration-200 cursor-pointer">shop now</button>
           </div>
         </div>
         <div className="relative">
@@ -40,7 +40,7 @@ export default function Ad() {
                 <p>sanitizer</p>
             </div>
             <h3 className="mt-4 text-2xl capitalize font-semibold">hand sanitizer <br />collection</h3>
-            <button className="mt-2 uppercase font-lg font-semibold underline">shop now</button>
+            <button className="mt-2 uppercase font-lg font-semibold underline hover:text-[var(--main-color)] transition-all duration-200 cursor-pointer">shop now</button>
           </div>
         </div>
       </div>

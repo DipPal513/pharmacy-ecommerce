@@ -12,7 +12,7 @@ export default function page() {
       <Top_Category />
       <Ad/>
       <Special />
-      <Product_Showcase title={"Trending Items"} />
+      <Product_Showcase title={"Trending Items"} isSlide={true}/>
       <Product_Showcase title={"Featured Items"} isSlide={true} />
       {/* <CountdownSlider /> */}
     </>

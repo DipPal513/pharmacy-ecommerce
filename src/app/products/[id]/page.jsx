@@ -13,8 +13,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 const ProductDetailsPage = () => {
+  const [quantity,setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(
     "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dGVjaHxlbnwwfHwwfHx8MA%3D%3D"
   );
@@ -99,34 +100,55 @@ const ProductDetailsPage = () => {
             sequi provident consequuntur esse, quam voluptates eaque magnam
             voluptate ipsa?
           </p>
-          <div className="flex items-center gap-4">
+            {/* Buttons */}
+            <div className="flex items-center gap-4">
             <div className="flex flex-col text-xl gap-4 items-center">
               <label>Quantity:</label>
-              <input
-                type="number"
-                defaultValue={1}
-                className="w-16 border px-2 py-1 rounded-md"
-              />
+              <div className="flex items-center gap-2">
+                <button
+                  className="px-2 py-1 border rounded-md"
+                  onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
+                >
+                  -
+                </button>
+                <span className="px-4">{quantity}</span>
+                <button
+                  className="px-2 py-1 border rounded-md"
+                  onClick={() => setQuantity((prev) => prev + 1)}
+                >
+                  +
+                </button>
+              </div>
             </div>
 
             <div className="flex flex-col text-xl gap-4 items-center">
               <label>Size:</label>
-              <select className="border px-2 py-1 rounded-md">
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
-              </select>
+              <Select>
+                <SelectTrigger className="w-32">
+                  <SelectValue placeholder="Select size" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="S">S</SelectItem>
+                  <SelectItem value="M">M</SelectItem>
+                  <SelectItem value="L">L</SelectItem>
+                  <SelectItem value="XL">XL</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             <div className="flex flex-col text-xl gap-4 items-center">
               <label>Color:</label>
-              <select className="border px-2 py-1 rounded-md">
-                <option>Red</option>
-                <option>Blue</option>
-                <option>Green</option>
-                <option>Black</option>
-              </select>
+              <Select>
+                <SelectTrigger className="w-32">
+                  <SelectValue placeholder="Select color" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Red">Red</SelectItem>
+                  <SelectItem value="Blue">Blue</SelectItem>
+                  <SelectItem value="Green">Green</SelectItem>
+                  <SelectItem value="Black">Black</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
           {/* Additional Info */}
@@ -148,19 +170,7 @@ const ProductDetailsPage = () => {
             </p>
           </div>
 
-          {/* Buttons */}
-          <div className="flex gap-4 mt-4">
-            <button
-              className="flex items-center gap-2 px-4 py-2 bg-[var(--main-color)] text-white rounded-xl hover:bg-gray-800 transition cursor-pointer"
-              onClick={handleCart}
-            >
-              <ShoppingCart className="w-5 h-5" />
-              Add to Cart
-            </button>{" "}
-            <button className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-xl hover:bg-red-600 transition">
-              <Heart className="w-5 h-5" />
-            </button>
-          </div>
+        
         </div>
       </div>
 
