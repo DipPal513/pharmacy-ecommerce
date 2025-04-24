@@ -129,9 +129,27 @@ const CartPage = () => {
           <button className="bg-[var(--main-color)] px-4 py-2 rounded-lg text-white cursor-pointer transition duration-200 hover:bg-red-500" onClick={()=> router.back()}>Back to Shopping</button>
         </div>
       </div>
+      <div className="flex flex-col gap-4">
+
+      
 
       {/* Right: Cart Summary */}
-      <div className="w-full lg:w-[30%] bg-gray-50 p-6 rounded-md shadow-md text-black">
+      <div className="bg-gray-50 shadow rounded  border-1 p-4">
+            <h1 className="text-2xl font-bold pb-2">Shipping Address</h1>
+            <hr className="py-2" />
+            <div className="content">
+              <h3 className="text-xl font-bold">Jamalpur</h3>
+              <p className="text-black">Name: Pritom paul Dip</p>
+              <p className="text-black">Phone: 8801887283457,</p>
+
+              <p className="text-gray-500 mt-5">Nandina,bokultola</p>
+              <p className="text-gray-500">
+                রানাগাছা ইউনিয়ন, জামালপুর সদর , জামালপুর 
+              </p>
+            </div>
+          </div>
+      <div className="w-full  bg-gray-50 p-6 rounded-md shadow-md text-black">
+        
         <h3 className="text-xl font-semibold mb-4">Cart Summary</h3>
 
         <div className="flex justify-between mb-2 text-lg text-gray-700">
@@ -169,6 +187,7 @@ const CartPage = () => {
         >
           Proceed to Checkout
         </button>
+      </div>
       </div>
     </div>
   );

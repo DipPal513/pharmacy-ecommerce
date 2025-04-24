@@ -79,7 +79,9 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-
+body{
+  position: relative;
+}
 
 .maincolor {
   color: var(--main-color);

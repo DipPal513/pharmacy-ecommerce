@@ -85,51 +85,13 @@ export default function ProductListingPage() {
     <div className="max-w-screen-xl mx-auto px-4 py-8">
       <div className="flex flex-col  lg:flex-row gap-8">
          {/* Main content */}
-         <div className="lg:w-3/4">
+         <div className="">
           {/* Sorting and view options */}
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-600">Sort By:</span>
-                <div className="relative">
-                  <Select defaultValue="default">
-                    <SelectTrigger className="w-[180px] h-9 text-sm">
-                      <SelectValue placeholder="Default Sorting" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="default">Default Sorting</SelectItem>
-                      <SelectItem value="price-low">Price: Low to High</SelectItem>
-                      <SelectItem value="price-high">Price: High to Low</SelectItem>
-                      <SelectItem value="newest">Newest First</SelectItem>
-                      <SelectItem value="popularity">Popularity</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-              <span className="text-sm text-gray-600">
-                Showing {indexOfFirstProduct + 1}-{Math.min(indexOfLastProduct, products.length)} of {products.length}{" "}
-                Results
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <button
-                className={`p-2 rounded ${viewMode === "grid" ? "bg-teal-500 text-white" : "bg-gray-100"}`}
-                onClick={() => setViewMode("grid")}
-              >
-                <Grid size={18} />
-              </button>
-              <button
-                className={`p-2 rounded ${viewMode === "list" ? "bg-teal-500 text-white" : "bg-gray-100"}`}
-                onClick={() => setViewMode("list")}
-              >
-                <List size={18} />
-              </button>
-            </div>
-          </div>
+          
 
           {/* Products grid */}
           <div
-            className={`grid ${viewMode === "grid" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "grid-cols-1"} gap-6 mb-8`}
+            className={`grid ${viewMode === "grid" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" : "grid-cols-1"} gap-6 mb-8`}
           >
             {[1,2,3,4,5,6].map((product,index) => (
              <Product key={index}/>
@@ -178,116 +140,7 @@ export default function ProductListingPage() {
             </PaginationContent>
           </Pagination>
         </div>
-        {/* Sidebar with filters */}
-        <div className="lg:w-1/4">
-          {/* Search */}
-          <div className="mb-8">
-            <h2 className="text-lg font-semibold mb-4">Search</h2>
-            <div className="relative">
-              <Input
-                type="text"
-                placeholder="Search"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pr-10"
-              />
-              <button className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                <Search size={18} />
-              </button>
-            </div>
-          </div>
-
-          {/* Category filter */}
-          <div className="mb-8">
-            <h2 className="text-lg font-semibold mb-4">Category</h2>
-            <div className="space-y-2">
-              {categories.map((category) => (
-                <div key={category.name} className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Checkbox id={`category-${category.name}`} />
-                    <label htmlFor={`category-${category.name}`} className="text-sm">
-                      {category.name}
-                    </label>
-                  </div>
-                  <span className="text-gray-500 text-sm">({category.count})</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Brand filter */}
-          <div className="mb-8">
-            <h2 className="text-lg font-semibold mb-4">Brands</h2>
-            <div className="space-y-2">
-              {brands.map((brand) => (
-                <div key={brand.name} className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Checkbox id={`brand-${brand.name}`} />
-                    <label htmlFor={`brand-${brand.name}`} className="text-sm">
-                      {brand.name}
-                    </label>
-                  </div>
-                  <span className="text-gray-500 text-sm">({brand.count})</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Price Range filter */}
-          <div className="mb-8">
-            <h2 className="text-lg font-semibold mb-4">Price Range</h2>
-            <Slider
-              defaultValue={[0, 200]}
-              max={200}
-              step={1}
-              value={priceRange}
-              onValueChange={setPriceRange}
-              className="mb-4"
-            />
-            <div className="flex items-center justify-between">
-              <span className="text-sm">${priceRange[0]}</span>
-              <span className="text-sm">${priceRange[1]}</span>
-            </div>
-          </div>
-
-          {/* Color filter */}
-          <div className="mb-8">
-            <h2 className="text-lg font-semibold mb-4">Color</h2>
-            <div className="space-y-2">
-              {colors.map((color) => (
-                <div key={color.name} className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Checkbox id={`color-${color.name}`} />
-                    <label htmlFor={`color-${color.name}`} className="text-sm flex items-center gap-2">
-                      <span
-                        className={`inline-block w-4 h-4 rounded-full bg-${color.value === "white" ? "gray-100 border border-gray-300" : color.value}`}
-                      ></span>
-                      {color.name}
-                    </label>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Review Size filter */}
-          <div className="mb-8">
-            <h2 className="text-lg font-semibold mb-4">Review Size</h2>
-            <div className="space-y-2">
-              {reviewSizes.map((size) => (
-                <div key={size.value} className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Checkbox id={`review-${size.value}`} />
-                    <label htmlFor={`review-${size.value}`} className="text-sm">
-                      {size.name}
-                    </label>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
+       
        
       </div>
     </div>

@@ -1,8 +1,8 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
-import { ChevronRight, Layers } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { ChevronRight } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 import { FaBars } from "react-icons/fa"
 
 export default function NestedDropdown({ isGray = false }) {

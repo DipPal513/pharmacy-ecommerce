@@ -6,7 +6,9 @@ import Category from "./sub-categories/Category";
 export default function Header() {
   return (
     <>
+    <div className="hidden sm:block">
       <TopHeader />
+    </div>
       <BottomHeader />
       {/* <Category /> */}
     </>

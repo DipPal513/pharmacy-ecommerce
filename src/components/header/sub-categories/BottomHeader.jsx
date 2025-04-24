@@ -74,13 +74,13 @@ export default function BottomHeader() {
           </div>
 
           {/* Right: Sign In, Wishlist, and Cart Icons with Text */}
-        <div className="flex items-center text-2xl space-x-5">
+        <div className="flex items-center text-2xl space-x-2 sm:space-x-5">
           {/* Search Button (Visible on mobile) */}
           <button
             onClick={toggleSearchModal}
-            className="md:hidden flex items-center space-x-2 cursor-pointer"
+            className="md:hidden flex items-center space-x-2 cursor-pointer "
           >
-            <FaSearch className=" text-xl text-[var(--main-color)]" />
+            <FaSearch className="text-lg sm:text-xl text-[var(--main-color)]" />
             <span className="hidden md:block text-gray-600">Search</span>
           </button>
 
@@ -97,10 +97,10 @@ export default function BottomHeader() {
           {/* Cart Icon and Text */}
           <Link
             href={"/cart"}
-            className="flex hover:text-red-500 transition duration-200 items-center space-x-2 cursor-pointer  "
+            className="flex hover:text-red-500 transition duration-200 items-center space-x-2 cursor-pointer text-lg sm:text-xl"
           >
             <FaShoppingCart className=" text-[var(--main-color)]" />
-            <sup className="text-sm bg-gray-400 px-2 py-1 rounded-full text-white">
+            <sup className="text-[15px] sm:px-2 py-1 rounded-full text-cyan-500 font-bold">
               {cartQuantity}
             </sup>
           </Link>
