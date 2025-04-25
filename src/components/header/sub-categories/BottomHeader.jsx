@@ -12,6 +12,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Top_Category from "@/components/top_category/Top_Category";
 import NestedDropdown from "./Category";
+import { X } from "lucide-react";
 
 export default function BottomHeader() {
   const [selectedCategory, setSelectedCategory] = useState("Electronics");
@@ -50,7 +51,7 @@ export default function BottomHeader() {
        
           <div className="hidden md:flex items-center w-full md:w-1/3 relative border-[var(--main-color)] border-2 rounded-full text-xl">
             {/* Category Dropdown */}
-            <select
+            {/* <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
               className="py-[8.9px] px-4 border border-gray-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-[var(--main-color)] border-r-0"
@@ -60,14 +61,14 @@ export default function BottomHeader() {
             {category}
                 </option>
               ))}
-            </select>
+            </select> */}
 
             {/* Search Input */}
-            <div className="flex items-center border border-gray-300 rounded-r-full w-3/4">
+            <div className="flex items-center  border-gray-300 rounded-r-full w-full">
               <input
                 type="text"
                 placeholder="Search..."
-                className="py-2 px-2 w-full focus:outline-none  "
+                className="py-2 px-4 w-full border-none focus:outline-none outline-none rounded-full"
               />
               <FaSearch className="text-gray-500 text-2xl mr-3 hover:text-[var(--main-color)] cursor-pointer" />
             </div>
@@ -117,24 +118,22 @@ export default function BottomHeader() {
           className="fixed top-0 left-0 right-0 bg-white shadow-md py-8 px-3 z-50"
           style={{ boxShadow: "0px 2px 10px rgba(0,0,0,0.1)" }}
         >
-          <div className="flex justify-between items-center">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="py-2 px-4 w-4/5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--main-color)]"
-            />
-            <button
-              className="py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-              onClick={() => setIsSearchModalOpen(false)}
-            >
-              Search
-            </button>
-          </div>
+
+<div className="flex items-center mt-8 border-2 border-[var(--main-color)] rounded-full w-full">
+              <input
+                type="text"
+                placeholder="Search..."
+                className="py-2 px-4 w-full border-none focus:outline-none outline-none rounded-full"
+              />
+              <FaSearch className="text-gray-500 text-2xl mr-3 hover:text-[var(--main-color)] cursor-pointer" />
+            </div>
+        
+         
           <button
             onClick={() => setIsSearchModalOpen(false)}
-            className="absolute top-2 right-2 text-xl text-gray-500 hover:text-gray-700"
+            className="absolute top-2 right-2 text-xl text-gray-500 hover:text-gray-700 border border-[var(--main-color)] p-2 rounded-full hover:border-red-500 transition-all duration-200 "
           >
-            X
+            <X />
           </button>
         </div>
       )}

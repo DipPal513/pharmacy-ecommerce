@@ -130,7 +130,7 @@ export default function NestedDropdown({ isGray = false }) {
         <button
           ref={mainButtonRef}
           className={cn(
-            "flex items-center gap-2 px-4 py-3 rounded transition-all duration-200 border",
+            "flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3 rounded transition-all duration-200 sm:border",
             isOpen ? "bg-primary text-primary-foreground shadow-lg scale-105" : "bg-background hover:bg-muted",
           )}
           onClick={() => isMobile && setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -141,12 +141,12 @@ export default function NestedDropdown({ isGray = false }) {
 
         {/* Mobile Dropdown */}
         {isMobile && isMobileMenuOpen && (
-          <div className="absolute left-0 top-full w-full bg-background shadow-lg z-50">
+          <div className="absolute px-3 w-[90vw] -left-[70vw] top-full  bg-background shadow-lg z-50">
             <ul className="py-2">
               {mainItems.map((item) => (
                 <li key={item.id} className="px-4 py-2 border-b">
                   <div
-                    className="flex justify-between items-center cursor-pointer"
+                    className="flex text-lg justify-between items-center cursor-pointer transition-all duration-200"
                     onClick={() => setActiveItem(activeItem === item.id ? null : item.id)}
                   >
                     <span>{item.label}</span>
@@ -157,7 +157,7 @@ export default function NestedDropdown({ isGray = false }) {
                       {subItems[item.id].map((subItem) => (
                         <li key={subItem.id} className="py-1">
                           <div
-                            className="flex justify-between items-center cursor-pointer"
+                            className="flex justify-between items-center cursor-pointer transition-all text-lg duration-200"
                             onClick={() => setActiveSubItem(activeSubItem === subItem.id ? null : subItem.id)}
                           >
                             <span>{subItem.label}</span>
@@ -166,7 +166,7 @@ export default function NestedDropdown({ isGray = false }) {
                           {activeSubItem === subItem.id && tertiaryItems[subItem.id] && (
                             <ul className="pl-4 py-2">
                               {tertiaryItems[subItem.id].map((tertiaryItem, index) => (
-                                <li key={index} className="py-1">
+                                <li key={index} className="text-lg py-1">
                                   {tertiaryItem}
                                 </li>
                               ))}

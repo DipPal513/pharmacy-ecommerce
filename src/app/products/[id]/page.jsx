@@ -2,18 +2,15 @@
 import Product from "@/components/product/Product";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCart } from "@/context/CartContext";
-import { Heart, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { FaStar, FaViacoin } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+import { MdOutlineShoppingCart } from "react-icons/md";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {FcLike} from "react-icons/fc"
-import {MdOutlineShoppingCart } from "react-icons/md";
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+
 import {
   Select,
   SelectContent,
@@ -21,17 +18,46 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 const ProductDetailsPage = () => {
   const [quantity, setQuantity] = useState(1);
-  const [selectedImage, setSelectedImage] = useState(
-    "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8dGVjaHxlbnwwfHwwfHx8MA%3D%3D"
-  );
+  const [selectedImage, setSelectedImage] = useState({
+    type: "image",
+    image:
+      "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MTV8fHRlY2h8ZW58MHx8MHx8fDA%3D",
+  });
   const images = [
-    "https://plus.unsplash.com/premium_photo-1683121716061-3faddf4dc504?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dGVjaHxlbnwwfHwwfHx8MA%3D%3D",
-    "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRlY2h8ZW58MHx8MHx8fDA%3D",
-    "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MTV8fHRlY2h8ZW58MHx8MHx8fDA%3D",
-    "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHRlY2h8ZW58MHx8MHx8fDA%3D",
+    {
+      type: "image",
+      image:
+        "https://plus.unsplash.com/premium_photo-1683121716061-3faddf4dc504?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dGVjaHxlbnwwfHwwfHx8MA%3D%3D",
+    },   { type: "image",
+      image:
+        "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MTV8fHRlY2h8ZW58MHx8MHx8fDA%3D",
+    },
+    {
+      type: "image",
+      image:
+        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRlY2h8ZW58MHx8MHx8fDA%3D",
+    },
+    {
+      type: "image",
+      image:
+        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRlY2h8ZW58MHx8MHx8fDA%3D",
+    },
+    {
+      type: "image",
+      image:
+        "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxzZWFyY2h8MTV8fHRlY2h8ZW58MHx8MHx8fDA%3D",
+    },
+    {
+      type: "video",
+      image:
+        "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHRlY2h8ZW58MHx8MHx8fDA%3D",
+      link: "https://youtu.be/UfAuM9yofMU?si=fj4U4c4MwgkBH22i",
+    },
   ];
+
   const { addToCart } = useCart();
 
   const product = {
@@ -56,29 +82,74 @@ const ProductDetailsPage = () => {
     addToCart(product);
     toast.success("Product added successfully!");
   };
+
   return (
     <div className="max-w-screen-xl mx-auto px-4 py-8">
       {/* Top Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Image Section */}
         <div>
-          <img
-            src={selectedImage}
-            alt="Main Product"
-            className="w-full rounded-xl"
-          />
-          <div className="flex gap-4 mt-4 overflow-x-auto">
-            {images.map((img, index) => (
-              <img
-                key={index}
-                src={img}
-                alt={`Thumbnail ${index + 1}`}
-                onClick={() => setSelectedImage(img)}
-                className={`w-20 h-20 object-cover rounded-md cursor-pointer border-2 ${
-                  selectedImage === img ? "border-black" : "border-transparent"
-                }`}
-              />
-            ))}
+          {selectedImage?.type == "image" ? (
+            <img
+              src={selectedImage?.image}
+              alt="Main Product"
+              className="w-full rounded-xl h-[250px] sm:h-[400px]"
+            />
+          ) : (
+            <iframe
+              width="100%"
+              height="400"
+              className="h-[250px] sm:h-[400px]"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&showinfo=0"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          )}
+          <div className="flex gap-4 mt-4 relative">
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              spaceBetween={0}
+              slidesPerView={4} // Ensures one slide is shown at a time
+              pagination={{
+                clickable: true,
+                el: ".swiper-pagination",
+              }}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+              }}
+              loop={true}
+              className="rounded-xl"
+            >
+              {" "}
+              {images?.map((data, index) => (
+                <SwiperSlide key={index}>
+                <img
+                  
+                  src={data?.image}
+                  alt={`Thumbnail ${index + 1}`}
+                  onClick={() => setSelectedImage(data)}
+                  className={`w-20 h-20 object-cover rounded-md cursor-pointer border-2 ${
+                    selectedImage === data
+                      ? "border-black"
+                      : "border-transparent"
+                  }`}
+                /></SwiperSlide>
+              ))}
+               <div className="swiper-button-prev absolute left-0 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/80 shadow-md cursor-pointer">
+          <ChevronLeft className="w-5 h-5 text-gray-800" />
+        </div>
+        <div className="swiper-button-next absolute right-0 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/80 shadow-md cursor-pointer">
+          <ChevronRight className="w-5 h-5 text-gray-800" />
+        </div>
+     
+            </Swiper>
           </div>
         </div>
 
@@ -108,7 +179,7 @@ const ProductDetailsPage = () => {
             voluptate ipsa?
           </p>
           {/* Buttons */}
-          <div className="flex items-center gap-4">
+          <div className="flex sm:flex-row flex-col sm:items-center items-start gap-4">
             <div className="flex flex-col text-xl gap-4 items-center">
               <label>Quantity:</label>
               <div className="flex items-center gap-2">
@@ -177,8 +248,13 @@ const ProductDetailsPage = () => {
             </p>
           </div>
           <div className="flex items-center gap-5">
-            
-            <button className="bg-[var(--main-color)] px-4 py-2 rounded-lg flex items-center gap-4 text-white cursor-pointer transition duration-200 hover:bg-red-500" onClick={handleCart}><span>Add To Cart</span><MdOutlineShoppingCart /></button>
+            <button
+              className="bg-[var(--main-color)] px-4 py-2 rounded-lg flex items-center gap-4 text-white cursor-pointer transition duration-200 hover:bg-red-500"
+              onClick={handleCart}
+            >
+              <span>Add To Cart</span>
+              <MdOutlineShoppingCart />
+            </button>
           </div>
         </div>
       </div>
@@ -186,7 +262,7 @@ const ProductDetailsPage = () => {
       {/* Tabs Section */}
       <div className="mt-12">
         <Tabs defaultValue="details">
-          <TabsList className="flex w-1/2 justify-between gap-12 border-b-2 rounded-none border-[var(--main-color)] bg-transparent">
+          <TabsList className="flex sm:w-1/2 justify-between gap-12 border-b-2 rounded-none border-[var(--main-color)] bg-transparent">
             <TabsTrigger
               value="details"
               className="px-4 py-4 font-medium text-black  transition"

@@ -25,6 +25,7 @@ const navItems = [
   { icon: <LayoutDashboard size={18} />, label: "Dashboard", href: "/dashboard" },
   { icon: <User size={18} />, label: "My Profile", href: "/dashboard/profile" },
   { icon: <ShoppingBag size={18} />, label: "My Order List", href: "/dashboard/orders", badge: "02" },
+  { icon: <ShoppingBag size={18} />, label: "Order Details", href: "/dashboard/order-details", badge: "02" },
   { icon: <Heart size={18} />, label: "My Wishlist", href: "/dashboard/wishlist", badge: "02" },
   { icon: <MapPin size={18} />, label: "Address List", href: "/dashboard/address" },
   { icon: <TicketCheck size={18} />, label: "Support Tickets", href: "/dashboard/tickets", badge: "02" },

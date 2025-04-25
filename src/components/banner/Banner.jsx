@@ -1,59 +1,56 @@
 "use client";
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import "swiper/css"
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Banner = () => {
-  
-// Banner slides data
-const bannerSlides = [
-  {
-    id: 1,
-    title: "Medicine & Health Care",
-    subtitle: "For Your Family",
-    description:
-      "There are many variations of passages orem psum available but the majority have suffered alteration in some form by injected humour.",
-    price: "$250",
-    tag: "EASY HEALTH CARE",
-    image: "https://live.themewild.com/medion/assets/img/hero/01.png",
-    bgColor: "bg-cyan-50",
-    accentColor: "bg-teal-500",
-  },
-  {
-    id: 2,
-    title: "Beauty & Personal Care",
-    subtitle: "For Your Wellness",
-    description:
-      "Discover premium beauty products that enhance your natural glow and support your personal care routine.",
-    price: "$199",
-    tag: "PREMIUM CARE",
-    image: "https://live.themewild.com/medion/assets/img/hero/02.png",
-    bgColor: "bg-rose-50",
-    accentColor: "bg-rose-500",
-  },
-  {
-    id: 3,
-    title: "Supplements & Vitamins",
-    subtitle: "For Your Health",
-    description:
-      "Support your health with our range of high-quality supplements and vitamins designed for optimal wellbeing.",
-    price: "$120",
-    tag: "DAILY ESSENTIALS",
-    image: "https://live.themewild.com/medion/assets/img/hero/03.png",
-    bgColor: "bg-amber-50",
-    accentColor: "bg-amber-500",
-  },
-]
+  // Banner slides data
+  const bannerSlides = [
+    {
+      id: 1,
+      title: "Medicine & Health Care",
+      subtitle: "For Your Family",
+      description:
+        "There are many variations of passages orem psum available but the majority have suffered alteration in some form by injected humour.",
+      price: "$250",
+      tag: "EASY HEALTH CARE",
+      image: "https://live.themewild.com/medion/assets/img/hero/01.png",
+      bgColor: "bg-cyan-50",
+      accentColor: "bg-teal-500",
+    },
+    {
+      id: 2,
+      title: "Beauty & Personal Care",
+      subtitle: "For Your Wellness",
+      description:
+        "Discover premium beauty products that enhance your natural glow and support your personal care routine.",
+      price: "$199",
+      tag: "PREMIUM CARE",
+      image: "https://live.themewild.com/medion/assets/img/hero/02.png",
+      bgColor: "bg-rose-50",
+      accentColor: "bg-rose-500",
+    },
+    {
+      id: 3,
+      title: "Supplements & Vitamins",
+      subtitle: "For Your Health",
+      description:
+        "Support your health with our range of high-quality supplements and vitamins designed for optimal wellbeing.",
+      price: "$120",
+      tag: "DAILY ESSENTIALS",
+      image: "https://live.themewild.com/medion/assets/img/hero/03.png",
+      bgColor: "bg-amber-50",
+      accentColor: "bg-amber-500",
+    },
+  ];
   return (
     <div className="mb-10 rounded-xl overflow-hidden max-w-screen-xl mx-auto mt-5">
- 
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={0}
-        slidesPerView={1}
-       
+        slidesPerView={1} // Ensures one slide is shown at a time
         pagination={{
           clickable: true,
           el: ".swiper-pagination",
@@ -68,11 +65,11 @@ const bannerSlides = [
         {bannerSlides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <div className={`${slide.bgColor} rounded-xl overflow-hidden`}>
-              <div className="flex flex-col md:flex-row items-center p-6 md:p-10">
-                <div className="md:w-1/2 mb-6 md:mb-0">
+              <div className="flex flex-row items-center p-6 md:p-10">
+                <div className="w-1/2 mb-6 md:mb-0">
                   <div className="inline-block">
                     <div
-                      className={`${slide.accentColor} text-white px-4 py-2 text-sm font-bold relative`}
+                      className={`${slide.accentColor} text-white px-2 sm:px-4 py-1 sm:py-2 text-base font-bold relative sm:flex hidden`}
                       style={{
                         clipPath: "polygon(0 0, 100% 0, 95% 100%, 0% 100%)",
                       }}
@@ -81,16 +78,22 @@ const bannerSlides = [
                     </div>
                   </div>
 
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mt-6">
+                  <h2 className="text-sm sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 sm:mt-6 mb-5 sm:mb-0">
                     {slide.title} <br />
-                    <span className={`text-${slide.accentColor.replace("bg-", "")}`}>{slide.subtitle}</span>
+                    <span
+                      className={`text-${slide.accentColor.replace("bg-", "")}`}
+                    >
+                      {slide.subtitle}
+                    </span>
                   </h2>
 
-                  <p className="my-6 text-slate-600 max-w-md">{slide.description}</p>
+                  <p className="my-6 text-slate-600 text-base max-w-md sm:flex hidden">
+                    {slide.description}
+                  </p>
 
                   <div className="flex flex-wrap gap-4">
                     <button
-                      className={`${slide.accentColor} text-white px-6 py-3 rounded-md font-medium flex items-center transition-transform transform hover:scale-105 hover:shadow-lg cursor-pointer`}
+                      className={`${slide.accentColor} text-white px-3 sm:px-6 py-2 sm:py-3 rounded-md font-medium flex items-center transition-transform transform hover:scale-105  hover:shadow-lg cursor-pointer text-sm sm:text-lg`}
                     >
                       Shop Now
                       <svg
@@ -108,7 +111,7 @@ const bannerSlides = [
                         ></path>
                       </svg>
                     </button>
-                    <button className="bg-white text-slate-800 px-6 py-3 rounded-md font-medium border border-slate-200 flex items-center transition-transform transform hover:scale-105 hover:shadow-lg cursor-pointer">
+                    <button className="bg-white text-slate-800 px-3 sm:px-6 py-2 sm:py-3 rounded-md font-medium border text-sm sm:text-lg border-slate-200 sm:flex items-center transition-transform hidden transform hover:scale-105 hover:shadow-lg cursor-pointer">
                       Learn More
                       <svg
                         className="ml-2 w-5 h-5"
@@ -128,7 +131,7 @@ const bannerSlides = [
                   </div>
                 </div>
 
-                <div className="md:w-1/2 relative">
+                <div className="w-1/2 relative">
                   <div className="absolute top-4 right-4 md:top-10 md:right-10 bg-red-100 text-red-500 rounded-full p-4 font-bold flex flex-col items-center justify-center w-16 h-16 border-2 border-dashed border-red-300">
                     <span className="text-xs">Price</span>
                     <span>{slide.price}</span>
@@ -145,7 +148,7 @@ const bannerSlides = [
         ))}
 
         {/* Custom pagination */}
-        <div className="swiper-pagination bottom-4"></div>
+        <div className="swiper-pagination z-50 bottom-8"></div>
       </Swiper>
     </div>
   );
